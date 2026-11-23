@@ -1,0 +1,27 @@
+{
+  "inspection_date": "2026-11-23",
+  "source_root": "/Users/simone/Work/INFN/MINE/MC_MINE_LightTrapping",
+  "status": "read-only; no MC sources or data changed",
+  "files": [
+    {
+      "path": "config/mini_panel_spiral.conf",
+      "sha256": "ab83b64e53137121937671aa929a0e2d4a919755ad5609a4bc3808815190676d"
+    },
+    {
+      "path": "config/readout_mini_panel.conf",
+      "sha256": "bf8ce0e3cf7255d11eda4459627d7f3f5911bbca067d88cd51a203beb6a77760"
+    },
+    {
+      "path": "docs/mini_panel_spiral.md",
+      "sha256": "134ff4d39236b9e3733534d7fa7bdf0a8fa497d9004b1460b736736679cc4044"
+    },
+    {
+      "path": "src/MiniPanelSpiralGeometry.cpp",
+      "sha256": "526e79dcf12216a7dbc96aa86de2c7f920d5500ffedeee8d62694769917ca0e6"
+    },
+    {
+      "path": "include/LightTrapping/MiniPanelSpiralGeometry.h",
+      "sha256": "10b5b5099057be0440d72756b0f3d6846b154f2fe270e65b88fd10a9b62dee65"
+    }
+  ]
+}

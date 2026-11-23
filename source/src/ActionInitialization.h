@@ -4,6 +4,7 @@
 // gemc
 #include "MPrimaryGeneratorAction.h"
 #include "MEventAction.h"
+#include "MineRunAction.h"
 #include "MSteppingAction.h"
 #include "gemcOptions.h"
 
@@ -23,8 +24,10 @@ public:
 	virtual void Build() const;
 	
 	
+	bool mineOpticalDisplay=false;
 	MPrimaryGeneratorAction *genAction;
 	MEventAction            *evtAction;
+    MineRunAction          *mineRunAction = nullptr;
 	MSteppingAction         *stpAction;
 };
 

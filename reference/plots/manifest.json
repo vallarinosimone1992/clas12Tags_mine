@@ -1,0 +1,549 @@
+{
+  "description": "Plots of existing reference data, not new physics inputs or digitizations",
+  "script": "scripts/plot_mine_references.py",
+  "script_sha256": "6ad6096cbf646711e9785e6d8b6fd05a4b3a32e45b8587c27960bd3fe085de14",
+  "versions": {
+    "matplotlib": "3.10.8",
+    "numpy": "2.4.6"
+  },
+  "common_style": {
+    "width_px": 1800,
+    "height_px": 1200,
+    "dpi": 180,
+    "axes_rect": [
+      0.115,
+      0.255,
+      0.845,
+      0.545
+    ],
+    "x_label": "Lunghezza d’onda, λ [nm]",
+    "x_limits_nm": [
+      250,
+      900
+    ],
+    "x_scale": "linear",
+    "default_y_limits": [
+      0,
+      1
+    ],
+    "default_y_scale": "linear",
+    "length_y_limits_mm": [
+      0.1,
+      1000
+    ],
+    "length_y_scale": "log"
+  },
+  "inputs": {
+    "fnal": {
+      "path": "experiments/mine/data/optics/scintillators/fnal_extruded.csv",
+      "sha256": "f709a9da9f4e428f768f6736afaf06abcf9189f60fc5c8b2a0d7e149ec392e4f"
+    },
+    "ej200": {
+      "path": "experiments/mine/data/optics/scintillators/ej200.csv",
+      "sha256": "06a445bd817a456e573297535f088ab9379dd11d0ab65a542d165012e5aa698d"
+    },
+    "transmission": {
+      "path": "experiments/mine/data/optics/scintillators/fnal_relative_transmission.csv",
+      "sha256": "af34df39f5c8be52b26304e4c81bcd9c3aeed7e40745529fe401892d5c7c1e90"
+    },
+    "y11_emission": {
+      "path": "experiments/mine/data/optics/y11/y11_emission.csv",
+      "sha256": "b7363b2bc3aa730fbc67c003ed455e8600cb69d4be10bba2bce864f198377aa8"
+    },
+    "y11_absorption": {
+      "path": "experiments/mine/data/optics/y11/y11_absorption.csv",
+      "sha256": "4775f60852760ea27552ce7eddbdfe6aeeb35f8159e531ce4f8ee25092da9c10"
+    },
+    "tio2": {
+      "path": "experiments/mine/data/optics/coatings/fnal_tio2_energy.csv",
+      "sha256": "8e10540dd15c7728740a7f328cc724e7fe3aa8ee25c1f62ed8734ea9492ab2cd"
+    },
+    "tyvek": {
+      "path": "experiments/mine/data/optics/coatings/tyvek.csv",
+      "sha256": "0c5d885dad1c70b5009ee41385c4ecbfe1a213a7aa5ce63565d57f51bd1349d6"
+    },
+    "mylar": {
+      "path": "experiments/mine/data/optics/coatings/aluminized_mylar.csv",
+      "sha256": "8fcbc483c96fb9a1e3064c80117a399ee0d8fce65f0b2bf7b40f3adb0243907b"
+    },
+    "bc621": {
+      "path": "experiments/mine/data/optics/coatings/bc621_reference_points.csv",
+      "sha256": "99f0efb13fe4dd1c1f49bcfbf3c647a1d09912fff471a112ed4e6277ebbe5af2"
+    },
+    "pde": {
+      "path": "experiments/mine/data/s13360_3075cs_pde.csv",
+      "sha256": "6c16e7b71767b03c345da0cd0cd571b33498f818975cd728fb55de024a71bc1c"
+    },
+    "groove_air": {
+      "path": "experiments/mine/data/optics/grooves/air_refractive_index.csv",
+      "sha256": "d8df9d962f86bf064b9c78c6cf3c057974cf80ef28de9802f69e8d37305fb659"
+    },
+    "groove_gel": {
+      "path": "experiments/mine/data/optics/grooves/gel_refractive_index.csv",
+      "sha256": "b2a9a190703672b8c9bdbba8a4038ab9db5b9d2012b9ecfb0779248dde608abd"
+    },
+    "groove_glue": {
+      "path": "experiments/mine/data/optics/grooves/glue_refractive_index.csv",
+      "sha256": "41b4d1fbb77c3ef5ce97fbb1bb0ce532daa99c41ad172ac1e3605dff71e4738d"
+    },
+    "ys6_absorption": {
+      "path": "experiments/mine/data/optics/kuraray_wls/ys6_absorption.csv",
+      "sha256": "6bdc2473c4305e368250e71999e228b74e4567025cf8e22532e422c8de61e231"
+    },
+    "ys4_absorption": {
+      "path": "experiments/mine/data/optics/kuraray_wls/ys4_absorption.csv",
+      "sha256": "054390a0a56683aaf22cb8505920b01fb65d1013d44a42da0823193a7e730dc8"
+    },
+    "ys6_emission": {
+      "path": "experiments/mine/data/optics/kuraray_wls/ys6_emission.csv",
+      "sha256": "8e3e3387de730eb8f96f8413286192f61b686e5cdb2e472f572660efd435d0c2"
+    },
+    "ys4_emission": {
+      "path": "experiments/mine/data/optics/kuraray_wls/ys4_emission.csv",
+      "sha256": "f20ba44a79b71220b56d2e3bc6599921e7e44578a85e0784f6857f0a4fec4540"
+    },
+    "ys6_transmission": {
+      "path": "experiments/mine/data/optics/kuraray_wls/ys6_transmission.csv",
+      "sha256": "db00f071dff67f63a5fe980271ff27f8f1af84a1d3b92b1b013a686eef28d3bf"
+    },
+    "ys4_transmission": {
+      "path": "experiments/mine/data/optics/kuraray_wls/ys4_transmission.csv",
+      "sha256": "51202ee18452782b40a60c6854e0e55e2b88d1eaff89c9ccc4771b2385a54b72"
+    },
+    "y11_transmission": {
+      "path": "experiments/mine/data/optics/kuraray_wls/y11_transmission_proxy.csv",
+      "sha256": "4d085e939c18f3f8d6c2ce387df5834b77c7303fce1b1febac014389a646d95e"
+    },
+    "fiber_loss_components": {
+      "path": "experiments/mine/data/optics/kuraray_wls/loss_components.csv",
+      "sha256": "7a0eed23f80fa555e7d8f9aca73635c116cb20228348256e85a2d103bade7ce8"
+    }
+  },
+  "plots": [
+    {
+      "file": "fnal_emission.png",
+      "title": "Spettro di emissione — scintillatore estruso FNAL",
+      "inputs": [
+        "fnal"
+      ],
+      "y_label": "Intensità di emissione relativa [u.a.]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        1.0
+      ],
+      "source_note": "S01 · Pla-Dalmau, Bross, Rykalin (2003), Fig. 4 · fnal_extruded.csv",
+      "notes": "Massimo relativo = 1. Proxy di fluorescenza, non spettro MIP calibrato.\nLinee fra i dati digitalizzati; nessuna curva aggiunta fuori supporto.",
+      "sha256": "3b8c69316443f4441dcb8aea25750adac6f4c42174a06e9e93f221d1af46888f",
+      "adjacent_copy": "experiments/mine/data/optics/scintillators/fnal_emission.png"
+    },
+    {
+      "file": "ej200_emission.png",
+      "title": "Spettro di emissione — scintillatore colato EJ-200",
+      "inputs": [
+        "ej200"
+      ],
+      "y_label": "Intensità di emissione relativa [u.a.]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        1.0
+      ],
+      "source_note": "S02 · Eljen, datasheet EJ-200 · ej200.csv",
+      "notes": "Massimo relativo = 1. Il grafico della fonte termina a 500 nm con intensità non nulla.\nLa coda non pubblicata non è stata estrapolata.",
+      "sha256": "5f95b751a65361c56d8b71a90afb8f088d153c35dbc49745b3e880ffbf390579",
+      "adjacent_copy": "experiments/mine/data/optics/scintillators/ej200_emission.png"
+    },
+    {
+      "file": "fnal_relative_transmission.png",
+      "title": "Trasmittanza relativa — scintillatore estruso FNAL",
+      "inputs": [
+        "transmission"
+      ],
+      "y_label": "Trasmittanza relativa T / T(PS) [1]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        1.0
+      ],
+      "source_note": "S01 · Pla-Dalmau et al. (2003), Fig. 4 · fnal_relative_transmission.csv",
+      "notes": "Dato di ricerca: non installato come assorbimento assoluto Geant4.\nIl riferimento PS impedisce di ricavare L assoluta senza conoscerne l’estinzione.",
+      "sha256": "e23c505ac561a138d1e289d7326d01aed735e0056c6373355ca4396783c5c1f7",
+      "adjacent_copy": "experiments/mine/data/optics/scintillators/fnal_relative_transmission.png"
+    },
+    {
+      "file": "spectra_and_transmission.png",
+      "title": "Spettri e trasmittanza — scintillatori FNAL ed EJ-200",
+      "inputs": [
+        "fnal",
+        "ej200",
+        "transmission"
+      ],
+      "y_label": "Intensità relativa / trasmittanza [1]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        1.0
+      ],
+      "source_note": "S01 · Pla-Dalmau et al. (2003), Fig. 4 | S02 · Eljen, datasheet EJ-200",
+      "notes": "Emissioni al massimo relativo = 1; T / T(PS) conserva i valori pubblicati.\nNessuna resa assoluta confrontabile dall’altezza degli spettri.",
+      "sha256": "b9e4a14b49020d61cd91359f430bdb31152e28207d31cd0dc0307143fcfe07d3",
+      "adjacent_copy": "experiments/mine/data/optics/scintillators/spectra_and_transmission.png"
+    },
+    {
+      "file": "y11_absorption.png",
+      "title": "Assorbimento relativo — fibra WLS Kuraray Y-11",
+      "inputs": [
+        "y11_absorption"
+      ],
+      "y_label": "Coefficiente relativo A(λ) / A(430 nm) [1]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        1.0
+      ],
+      "source_note": "S03 · Herzkamp (2016), Fig. 4.14 · y11_absorption.csv",
+      "notes": "A(430 nm) = 1. Dati disponibili circa 350–490 nm.\nIl comportamento fuori supporto non è misurato dalla curva e non è disegnato.",
+      "sha256": "a6112b20a20b9712a95165375b23b71d3d99f1e90bdcbf23c76e91470e16bb2c",
+      "adjacent_copy": "experiments/mine/data/optics/y11/y11_absorption.png"
+    },
+    {
+      "file": "y11_emission.png",
+      "title": "Spettro di emissione — fibra WLS Kuraray Y-11",
+      "inputs": [
+        "y11_emission"
+      ],
+      "y_label": "Intensità di emissione relativa [u.a.]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        1.0
+      ],
+      "source_note": "S03 · Herzkamp (2016), Fig. 4.14 · y11_emission.csv",
+      "notes": "Massimo relativo = 1. L’ordinata della fonte non distingue fotoni da potenza radiante.\nSupporto circa 430–640 nm; nessuna coda aggiunta.",
+      "sha256": "26097f4030e719b91d38d46c04acb39caf43178966bde8b3b0cea23a7bfc779c",
+      "adjacent_copy": "experiments/mine/data/optics/y11/y11_emission.png"
+    },
+    {
+      "file": "y11_wls_absorption_length_200ppm.png",
+      "title": "Lunghezza di assorbimento WLS — Y-11 a 200 ppm",
+      "inputs": [
+        "y11_absorption"
+      ],
+      "y_label": "Lunghezza di assorbimento WLS [mm]",
+      "y_scale": "log",
+      "y_limits": [
+        0.1,
+        1000.0
+      ],
+      "source_note": "S03 · Herzkamp (2016), Fig. 4.14 e Tab. 4.4 | k₄₃₀ = 0.0147 ppm⁻¹ mm⁻¹",
+      "notes": "Scala verticale logaritmica: 0.1–1000 mm. L(430 nm) = 0.340 mm.\nA = 0 omesso; nessuna coda estrapolata. Incertezza della scala assoluta: vedi reference/sources.md.",
+      "sha256": "f32bb1c1928454d22d3f517b1a262bc7cfbdee00317a5d8c23642d53f14964e0",
+      "adjacent_copy": "experiments/mine/data/optics/y11/y11_wls_absorption_length_200ppm.png"
+    },
+    {
+      "file": "fnal_tio2_reflectance.png",
+      "title": "Riflettanza — TiO₂ coestruso FNAL / NICADD",
+      "inputs": [
+        "tio2"
+      ],
+      "y_label": "Riflettanza R [1]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        1.0
+      ],
+      "source_note": "S08 · Mu2e CRVStandalone, commit c56260a | S09 · Ehrlich (2019)",
+      "notes": "Punti della fonte convertiti da eV a nm; interpolazione lineare in energia.\nTratteggio: estensione di modello oltre 620 nm. Nessuna correzione empirica Mu2e applicata.",
+      "sha256": "359e7d72905ee5eb9bc6efd67b2bac5014e525cfb48f55a866fc7cb7d770b43b",
+      "adjacent_copy": "experiments/mine/data/optics/coatings/fnal_tio2_reflectance.png"
+    },
+    {
+      "file": "tyvek_reflectance.png",
+      "title": "Riflettanza relativa — Tyvek 150 µm",
+      "inputs": [
+        "tyvek"
+      ],
+      "y_label": "Riflettanza relativa R / R(BaSO₄) [1]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        1.0
+      ],
+      "source_note": "S10 · Yang et al. (2021), Fig. 3(a) · dati relativi a BaSO₄",
+      "notes": "Non è una calibrazione assoluta del contatto ottico MINE.\nTratteggio oltre 800 nm: estensione costante del modello; non nuovi dati della fonte.",
+      "sha256": "69ac1260d6e2127a5df3b3f284cbdc74120b9587f5e67cd3fca809b4486d6953",
+      "adjacent_copy": "experiments/mine/data/optics/coatings/tyvek_reflectance.png"
+    },
+    {
+      "file": "aluminized_mylar_reflectance.png",
+      "title": "Riflettanza relativa — Mylar alluminato 10 µm",
+      "inputs": [
+        "mylar"
+      ],
+      "y_label": "Riflettanza relativa R / R(BaSO₄) [1]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        1.0
+      ],
+      "source_note": "S10 · Yang et al. (2021), Fig. 3(a) · dati relativi a BaSO₄",
+      "notes": "Non è una calibrazione assoluta del contatto ottico MINE.\nTratteggio oltre 800 nm: estensione costante del modello; non nuovi dati della fonte.",
+      "sha256": "d76c4f560acde042bc7fd03daaa9abf74170e6cde53e4e73925f9a23443207c9",
+      "adjacent_copy": "experiments/mine/data/optics/coatings/aluminized_mylar_reflectance.png"
+    },
+    {
+      "file": "bc621_reflectance.png",
+      "title": "Riflettanza di riferimento — vernice BC-621",
+      "inputs": [
+        "bc621"
+      ],
+      "y_label": "Riflettanza R [1]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        1.0
+      ],
+      "source_note": "S13 · Saint-Gobain / Luxium, datasheet BC-621 (2021)",
+      "notes": "I punti non costituiscono una curva spettrale attiva nel simulatore.\nVernice distinta dal TiO₂ coestruso FNAL; il valore scalare non descrive il taglio UV.",
+      "sha256": "9e005c587c21604824c4c5323b5664cda363306d67d839a87531fc6661dfd99f",
+      "adjacent_copy": "experiments/mine/data/optics/coatings/bc621_reflectance.png"
+    },
+    {
+      "file": "coating_spectra.png",
+      "title": "Riflettanza spettrale — rivestimenti FNAL, Tyvek e Mylar",
+      "inputs": [
+        "tio2",
+        "tyvek",
+        "mylar"
+      ],
+      "y_label": "Riflettanza / riflettanza relativa [1]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        1.0
+      ],
+      "source_note": "S08–S09 · Mu2e / Ehrlich | S10 · Yang et al. (2021), Fig. 3(a)",
+      "notes": "Confronto di input eterogenei, non misura assoluta sullo stesso pannello.\nTratteggi: estremi costanti nel modello. Nessun riscalamento per allineare i massimi.",
+      "sha256": "e67f6251488d4730fba9f9a4c9384a33256d71c2c25470fbd2d68b95a5840b8d",
+      "adjacent_copy": "experiments/mine/data/optics/coatings/coating_spectra.png"
+    },
+    {
+      "file": "s13360_3075cs_pde.png",
+      "title": "PDE — SiPM Hamamatsu S13360-3075CS",
+      "inputs": [
+        "pde"
+      ],
+      "y_label": "Photon detection efficiency, PDE [1]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        1.0
+      ],
+      "source_note": "S07 · Hamamatsu S13360 series, p. 4, KAPDB0325EB · s13360_3075cs_pde.csv",
+      "notes": "270 nm: ancora nulla imposta; la traccia leggibile inizia circa a 280 nm.\nPDE include il fill factor; il ramo Geant4 corrente forza il SiPM ideale (questa curva non attiva).",
+      "sha256": "7092d3562ac6ee330b64a7ce7b9ca8c883d702b57299c2d38a7be665d949d9f3",
+      "adjacent_copy": "experiments/mine/data/s13360_3075cs_pde.png"
+    },
+    {
+      "file": "emission_spectra_comparison.png",
+      "title": "Spettri di emissione — FNAL, EJ-200 e Kuraray Y-11",
+      "inputs": [
+        "fnal",
+        "ej200",
+        "y11_emission"
+      ],
+      "y_label": "Intensità di emissione relativa [u.a.]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        1.0
+      ],
+      "source_note": "S01 · Pla-Dalmau et al. | S02 · Eljen | S03 · Herzkamp, Fig. 4.14",
+      "notes": "Massimi relativi = 1 già nei CSV; le ampiezze non confrontano le rese assolute.\nNessuna estrapolazione, traslazione o nuova normalizzazione dei dati.",
+      "sha256": "61ff346612ea2c44cd19c530a7b04b7409576945452fcf244817be40263833bd",
+      "adjacent_copy": null
+    },
+    {
+      "file": "air_refractive_index.png",
+      "title": "Indice di rifrazione — aria ambiente",
+      "inputs": [
+        "groove_air"
+      ],
+      "y_label": "Indice di rifrazione di fase, n [1]",
+      "y_scale": "linear",
+      "y_limits": [
+        1.0,
+        1.65
+      ],
+      "source_note": "S26 · NIST · indice tipico dell’aria",
+      "notes": "n = 1.000277 costante: approssimazione; dipendenze da λ, temperatura e pressione omesse.",
+      "sha256": "506149248d08276b8fe92bb332e2d8aff7f9d0d7f0b6c21d43783b3252ea352c",
+      "adjacent_copy": "experiments/mine/data/optics/grooves/air_refractive_index.png"
+    },
+    {
+      "file": "gel_refractive_index.png",
+      "title": "Indice di rifrazione — gel ottico Thorlabs G608N3",
+      "inputs": [
+        "groove_gel"
+      ],
+      "y_label": "Indice di rifrazione di fase, n [1]",
+      "y_scale": "linear",
+      "y_limits": [
+        1.0,
+        1.65
+      ],
+      "source_note": "S24 · Thorlabs G608N3 · specifiche del produttore",
+      "notes": "n(λ) = 1.4338 + 10520 / λ² (λ in nm). Punti: valori del produttore.\nTratteggio sotto 402 nm: estrapolazione UV non validata del fit.",
+      "sha256": "e9979eb83a9e7aa87fd27d6784fc33f23e8ff5f0735f66d6761aef902fc7d8fc",
+      "adjacent_copy": "experiments/mine/data/optics/grooves/gel_refractive_index.png"
+    },
+    {
+      "file": "glue_refractive_index.png",
+      "title": "Indice di rifrazione — colla ottica Eljen EJ-500",
+      "inputs": [
+        "groove_glue"
+      ],
+      "y_label": "Indice di rifrazione di fase, n [1]",
+      "y_scale": "linear",
+      "y_limits": [
+        1.0,
+        1.65
+      ],
+      "source_note": "S25 · Eljen EJ-500 · datasheet luglio 2021",
+      "notes": "n = 1.57 nominale: estensione costante del modello; dispersione non fornita dal produttore.",
+      "sha256": "b8ced3ff2aa75ad19f04508779737ee7025ae76c52e1dc1abbb8d025e1ec1cae",
+      "adjacent_copy": "experiments/mine/data/optics/grooves/glue_refractive_index.png"
+    },
+    {
+      "file": "groove_refractive_indices.png",
+      "title": "Indice di rifrazione — aria, gel e colla ottica",
+      "inputs": [
+        "groove_air",
+        "groove_gel",
+        "groove_glue"
+      ],
+      "y_label": "Indice di rifrazione di fase, n [1]",
+      "y_scale": "linear",
+      "y_limits": [
+        1.0,
+        1.65
+      ],
+      "source_note": "S24 · Thorlabs G608N3 | S25 · Eljen EJ-500 | S26 · NIST",
+      "notes": "Tratteggi: indici costanti assunti per aria/colla; estrapolazione del gel sotto 402 nm.\nQueste curve non sono probabilità né lunghezze di attenuazione.",
+      "sha256": "a06add7acae52ea105433fd4f546122407ea1198720b7c599d375e6808e356b6",
+      "adjacent_copy": "experiments/mine/data/optics/grooves/groove_refractive_indices.png"
+    },
+    {
+      "file": "kuraray_wls_absorption.png",
+      "title": "WLS absorption spectra: Kuraray Y-11, YS-6 and YS-4",
+      "inputs": [
+        "y11_absorption",
+        "ys6_absorption",
+        "ys4_absorption"
+      ],
+      "y_label": "Relative absorption [normalized]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        1.0
+      ],
+      "source_note": "Kuraray p.7: solution spectra | Herzkamp Fig.4.14: Y-11",
+      "notes": "YS curves: raster digitization, 2 nm grid; weak unresolved tails are truncated.\nRelative spectra do not determine absolute absorption or quantum yield.",
+      "sha256": "53fdca97c008155524e6a70fdabf9f6c77cee20539e3fc0c72cc4a0f0f4a27c9",
+      "adjacent_copy": "experiments/mine/data/optics/kuraray_wls/wls_absorption.png"
+    },
+    {
+      "file": "kuraray_wls_emission.png",
+      "title": "WLS emission spectra: Kuraray Y-11, YS-6 and YS-4",
+      "inputs": [
+        "y11_emission",
+        "ys6_emission",
+        "ys4_emission"
+      ],
+      "y_label": "Relative emission [normalized]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        1.0
+      ],
+      "source_note": "Kuraray p.7: solution spectra | Herzkamp Fig.4.14: Y-11",
+      "notes": "YS curves: raster digitization, 2 nm grid; weak unresolved tails are truncated.\nRelative spectra do not determine absolute absorption or quantum yield.",
+      "sha256": "1cf8ed258882349926b8698c840b1dc9ffc13fb034f2c64ba9a880ed45ac0872",
+      "adjacent_copy": "experiments/mine/data/optics/kuraray_wls/wls_emission.png"
+    },
+    {
+      "file": "kuraray_wls_transmission.png",
+      "title": "Kuraray spectral loss: YS-4, YS-6 and Y-11 proxy",
+      "inputs": [
+        "ys6_transmission",
+        "ys4_transmission",
+        "y11_transmission"
+      ],
+      "y_label": "Transmission loss [dB/km]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        2000.0
+      ],
+      "source_note": "Kuraray meeting, 13 November 2026, page 7; Y-11 is a declared substitute",
+      "notes": "Y-11 proxy: mean of YS-4/YS-6 coefficients. Ordinary loss uses the red curve, held below 520 nm.\nThe blue excess is assigned to WLS reabsorption; no scalar 4 m loss is added.",
+      "sha256": "397663fcb6fecbf7352e0e8b01c37dffa46fc2ad2c68cce5d793b223136ab110",
+      "adjacent_copy": "experiments/mine/data/optics/kuraray_wls/wls_transmission.png"
+    },
+    {
+      "file": "kuraray_y11_loss_budget.png",
+      "title": "Spectral loss budget: Kuraray Y-11 substitute",
+      "inputs": [
+        "y11_transmission",
+        "fiber_loss_components"
+      ],
+      "y_label": "Extinction coefficient [dB/km]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        2000.0
+      ],
+      "source_note": "Kuraray p.7; decomposition is an explicit model assumption, not separately measured PS/PMMA data",
+      "notes": "Within measured support at 200 effective ppm, the two rates sum to the input curve.\nBlue absorption <=480 nm is retained; a log-coefficient bridge joins the weak red tail.",
+      "sha256": "17386ffbad1f407276c8d4fbccc9cfee845b295451d23a9813dd297b3524e012",
+      "adjacent_copy": "experiments/mine/data/optics/kuraray_wls/y11_loss_budget.png"
+    },
+    {
+      "file": "kuraray_ys6_loss_budget.png",
+      "title": "Spectral loss budget: Kuraray YS-6",
+      "inputs": [
+        "ys6_transmission",
+        "fiber_loss_components"
+      ],
+      "y_label": "Extinction coefficient [dB/km]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        2000.0
+      ],
+      "source_note": "Kuraray p.7; decomposition is an explicit model assumption, not separately measured PS/PMMA data",
+      "notes": "Within measured support at 200 effective ppm, the two rates sum to the input curve.\nBlue absorption <=480 nm is retained; a log-coefficient bridge joins the weak red tail.",
+      "sha256": "adb202f0a557b6ee6c0d5b60d97ed5723a6414dbeaf7988d3ad3457e9fdc3e8b",
+      "adjacent_copy": "experiments/mine/data/optics/kuraray_wls/ys6_loss_budget.png"
+    },
+    {
+      "file": "kuraray_ys4_loss_budget.png",
+      "title": "Spectral loss budget: Kuraray YS-4",
+      "inputs": [
+        "ys4_transmission",
+        "fiber_loss_components"
+      ],
+      "y_label": "Extinction coefficient [dB/km]",
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        2000.0
+      ],
+      "source_note": "Kuraray p.7; decomposition is an explicit model assumption, not separately measured PS/PMMA data",
+      "notes": "Within measured support at 200 effective ppm, the two rates sum to the input curve.\nBlue absorption <=480 nm is retained; a log-coefficient bridge joins the weak red tail.",
+      "sha256": "3f0e3274b5266c79f9b149f092b2c50d7b13bf2e83798faefb4ec7b00a85e736",
+      "adjacent_copy": "experiments/mine/data/optics/kuraray_wls/ys4_loss_budget.png"
+    }
+  ]
+}

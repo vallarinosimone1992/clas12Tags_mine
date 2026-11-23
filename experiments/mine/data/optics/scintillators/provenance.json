@@ -1,0 +1,52 @@
+{
+  "version": "FNAL2003_EljenEJ200_v1",
+  "sources": {
+    "fnal_extruded": {
+      "url": "https://lss.fnal.gov/archive/2003/conf/fermilab-conf-03-318-e.pdf",
+      "title": "Pla-Dalmau, Bross, Rykalin, Extruding Plastic Scintillator at Fermilab (2003)",
+      "figure": "4, PDF page 3",
+      "pdf_sha256": "1c13d9ba7c120afc6aa0d92dcfacb8b7cadd23bfcdbe452f439fc0cab7086182",
+      "composition": "Polystyrene + 1% PPO + 0.03% POPOP",
+      "measurement": "Front-surface fluorescence, 310 nm excitation, 1 cm disk",
+      "calibration": {
+        "x300": 354.75,
+        "x550": 524.25,
+        "y0": 648,
+        "yT100": 714
+      },
+      "limitations": [
+        "Fluorescence proxy, not a measured charged-particle scintillation spectrum",
+        "PPO and POPOP bands are both retained; no arbitrary UV cut",
+        "UV transfer/re-emission inside the scintillator is not modeled",
+        "Y11 absorption below its measured support (about 350 nm) remains unresolved/zero",
+        "Transmission is relative to an equal-thickness polystyrene reference, not absolute",
+        "Vector quantization ~1 nm; median ordinate at repeated wavelengths"
+      ]
+    },
+    "ej200": {
+      "url": "https://courses.washington.edu/phys433/equipment/EJ200data-sheet.pdf",
+      "official_current_datasheet": "https://eljentechnology.com/images/products/data_sheets/EJ-200_EJ-204_EJ-208_EJ-212.pdf",
+      "title": "Eljen Technology, EJ-200 Plastic Scintillator, emission spectrum",
+      "pdf_sha256": "2b38347ad8b708940a42cd9b27f4fc9a04a691498ee7bcf0aec59d944f0d05e7",
+      "calibration": {
+        "x380": 173.460938,
+        "x500": 415.5,
+        "y0": 159.480469,
+        "y1": 300.121094
+      },
+      "limitations": [
+        "Curve stops at 500 nm with a nonzero ordinate (~0.055); unmeasured red tail is excluded, not extrapolated",
+        "Selecting this spectrum does not change yield, decay, Birks, index or material composition"
+      ]
+    }
+  },
+  "emission_convention": "Relative photon density per nm assumed; power_per_nm can be selected explicitly",
+  "runtime": "Linear interpolation in wavelength; Jacobian to photon density per energy; 0.25 nm grid with source vertices and guard points; zero outside source support",
+  "attenuation": {
+    "implemented": "Existing wavelength-independent bulkAbsorptionLengthMm retained",
+    "fnal": "Trelative measures excess extinction: mu_sample - mu_PS = -ln(Trelative)/10 mm; PS baseline is unknown",
+    "ej200": "Eljen 380 cm is a technical light attenuation length, not an absolute spectral ABSLENGTH",
+    "other_reference": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10746763/",
+    "other_reference_limit": "Fig.8 absorbance curves normalized to unity; absolute scale unavailable"
+  }
+}

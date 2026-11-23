@@ -1,0 +1,11 @@
+Mon Nov 23 12:22:35 UTC 2026
+Linux c9023e8e4c86 7.0.14-linuxkit #1 SMP PREEMPT Sun Sep 20 16:14:09 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+10.7.4
+g++ (GCC) 11.5.0 20240719 (Red Hat 11.5.0-5)
+Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+-DG4VIS_USE_OPENGL -DG4UI_USE_TCSH -DG4INTY_USE_QT -DG4UI_USE_QT -DG4VIS_USE_OPENGLQT -I/usr/include/qt5/ -I/usr/include/qt5/QtCore -I/usr/lib64/qt5//mkspecs/linux-g++ -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtOpenGL -I/usr/include/qt5/QtPrintSupport -W -Wall -pedantic -Wno-non-virtual-dtor -Wno-long-long -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -Wno-variadic-macros -Wshadow -pipe -std=c++11 -I/cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/geant4/10.7.4/include/Geant4 -I/cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/clhep/2.4.7.1/include -I/cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/xercesc/3.2.5/include
+-L/cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/geant4/10.7.4/lib64 -lG4OpenGL -lG4gl2ps -lG4Tree -lG4FR -lG4GMocren -lG4visHepRep -lG4RayTracer -lG4VRML -lG4vis_management -lG4modeling -lG4interfaces -lG4persistency -lG4analysis -lG4error_propagation -lG4readout -lG4physicslists -lG4run -lG4event -lG4tracking -lG4parmodels -lG4processes -lG4digits_hits -lG4track -lG4particles -lG4geometry -lG4materials -lG4graphics_reps -lG4intercoms -lG4global -L/cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/clhep/2.4.7.1/lib -lCLHEP-2.4.7.1
+HIPO=/cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/hipo/4.5.0

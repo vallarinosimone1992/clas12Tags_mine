@@ -1,0 +1,8 @@
+# Approximate digitization of BC-621 datasheet; research points only, not a runtime spectral curve
+wavelength_nm,reflectivity_fraction
+400,0.423407
+420,0.885926
+425,0.921185
+450,0.959037
+500,0.970444
+550,0.972000

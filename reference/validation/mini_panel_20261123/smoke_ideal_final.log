@@ -1,0 +1,580 @@
+MINE transport: geant4; geometry=mini_panel_spiral; variation=mini_panel_spiral; profile=Y-11 single cladding; sipm=ideal; sensors=2; config=/Users/simone/Work/INFN/MINE/clas12Tags_mine/experiments/mine/geant4_optics_mini_panel_spiral.conf
+Output richiesto: hipo, /work/clas12Tags_mine/build/validation/mini_panel_spiral_20261122/mini_ideal_final.hipo
+Log persistente: /Users/simone/Work/INFN/MINE/clas12Tags_mine/experiments/mine/output/mine_20261123_071810_7273.log
+MINE transport: geant4
+MINE random seed: 20261123 (CLHEP MixMax; salvato nelle condizioni di simulazione)
+MINE host Geant4 optical config: /Users/simone/Work/INFN/MINE/clas12Tags_mine/experiments/mine/geant4_optics_mini_panel_spiral.conf
+# Measured 300x500x8-mm mini panel, two stacked Y11 Non-S fibers.
+# Geometry source: MC_MINE_LightTrapping/config/mini_panel_spiral.conf.
+# EJ200 nominal yield/decay/rise/density; 1000-mm bulk absorption is provisional.
+# Active spectral Kuraray budget, Mylar wrapping, G608N3 gel in groove and sensor gap.
+geometry=mini_panel_spiral
+sipmModel=ideal
+sensorGelGapMm=1
+tentAngleDeg=30
+tentClearanceMm=0
+miniCurveToleranceMm=0.0002
+model=spectral_wls
+wlsDyeConcentrationPpm=200
+wlsEmissionConvention=photon_per_nm
+fiberModel=Y-11
+sensorCount=2
+fiberCount=2
+diagonal=bl_tr
+pitchMm=100
+minBendRadiusMm=30
+fiberDiameterMm=1
+claddingFraction=0.03
+zMcMm=6.5
+# Measured top groove: 1x2 mm, centers z_MC=6.5/7.5 mm before the external S.
+# Choices: gel (Thorlabs G608N3), air, glue (Eljen EJ-500); see reference/grooves.md.
+grooveModel=rectangular
+grooveWidthMm=1
+grooveDepthMm=2
+grooveMaterial=gel
+readoutInsetMm=10
+readoutWidthMm=3
+readoutHeightMm=3
+autoFit=1
+checkOverlaps=1
+nScintillator=1.58
+nCore=1.59
+nCladding=1.49
+# Aluminized Mylar 10 um: Yang et al. 2021 Fig.3(a), R(lambda) relative to BaSO4.
+# Unity reference albedo is an explicit approximation, not an absolute calibration.
+# For other materials use coatingMaterial=fnal_tio2|tyvek and coatingModel=diffuse.
+coatingModel=specular
+coatingMaterial=aluminized_mylar
+coatingReferenceAlbedo=1
+# Scalar reflectivity is permitted only with coatingMaterial=constant.
+birksMmPerMeV=0.126
+lightYieldPerMeV=10000
+scintillationDecayNs=2.1
+scintillationRiseNs=0.9
+scintillatorDensityGcm3=1.023
+# Generation spectrum: monochromatic | fnal_extruded | ej200.
+# The last two require model=spectral_wls; sources/limits: data/optics/scintillators/README.md.
+# EJ200 emission spectrum; attenuation remains an explicit provisional path length.
+# Change only the spectrum here; yield, time constants and absorption above/below stay explicit.
+scintillationSpectrum=ej200
+scintillationEmissionConvention=photon_per_nm
+# Used only for monochromatic scintillation (legacy configuration fallback).
+scintillationWavelengthNm=425
+# wlsWavelengthNm is a nominal legacy proxy; spectral emission uses the dataset.
+wlsWavelengthNm=476
+wlsDecayNs=6.9
+wlsQuantumYield=1
+# wlsAbsorptionLengthMm is used only by monochromatic_effective.
+# Intensity survival exp(-actual optical ray distance / length). Zero disables.
+bulkAbsorptionLengthMm=1000
+coreAbsorptionLengthMm=0
+claddingAbsorptionLengthMm=0
+# Kuraray spectral budget: same ordinary curve in core/cladding, WLS counted once.
+# Y11 uses mean YS4/YS6 coefficients; see reference/wls_spectral_loss.md.
+effectiveFiberAttenuationMm=0
+fiberLossModel=kuraray_spectral
+Loading geant4/10.7.4
+  Loading requirement: .clhep/2.4.7.1 .xercesc/3.2.5 .qt/system sim_system
+Loading gemc/dev
+  Loading requirement: .scons_bm/dev .cmag/1.1 .mlibrary/dev
+MINE GEMC environment loaded
+  GEMC=/work/clas12Tags_mine
+  GEMC_DATA_DIR=/work/clas12Tags_mine
+  CCDB_HOME=/cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/ccdb/1.99.6
+  HIPO=/cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/hipo/4.5.0
+Entering initializeRTPCConstants
+Connecting to mysql://clas12reader@clasdb.jlab.org/clas12/calibration/rtpc
+RTPC:Getting drift parameters
+
+ >> Parsing /tmp/mine-optical.EqllWelT/launch.gcard for options: 
+  > Registers Hit Process Routines. set to: mine
+  > (x,y,z) semi-dimensions of the experimental Hall. set to: 1000*mm, 1000*mm, 1000*mm
+  > Composition of the Experimental Hall set to: G4_AIR
+  > Magnetic Field of the Hall set to: no
+  > Magnetic Field Maps Location set to: .
+  > Radio-frequency signal set to: no
+  > Primary particle, Energy, Theta, Phi set to: mu-, 10*GeV, 0*deg, 0*deg
+  > Primary Particle Vertex set to: (0, 0, -100)mm
+  > delta_Energy, delta_Theta, delta_phi set to: 0*GeV, 0*deg, 0*deg
+  > Primary Particle Vertex Spread set to: (150, 250, 0)mm
+  > Choice of Physics List set to: STD + FTFP_BERT
+  > QT Gui set to: 0
+  > Number of events to be simulated set to: 1
+  > De-activates integrated digitized output for system(s).  set to: yes
+  > Activates integrated geant4 true info output for system(s) set to: mine
+  > Type of output, output filename.  set to: hipo, experiments/mine/output/mine.hipo
+
+
+  > QT Gui set to: 0
+  > Primary Particle Vertex set to: (0,0,-100)mm
+  > Primary Particle Vertex Spread set to: (0,0,0)mm
+  > Type of output, output filename.  set to: hipo, /work/clas12Tags_mine/build/validation/mini_panel_spiral_20261122/mini_ideal_final.hipo
+  > Random Engine Initialization set to: 20261123
+  > Number of events to be simulated set to: 1
+
+
+  > Initializing GEant4 MonteCarlo:  gemc 6.2
+
+ >> gemc Init:  Initializing GEant4 MonteCarlo version gemc 6.2
+ >> gemc Init:  Initializing CLHEP Random Engine from user defined seed.
+ >> gemc Init:  Seed initialized to: 20261123
+ >> gemc Init:  Instantiating Run Manager...
+
+**************************************************************
+ Geant4 version Name: geant4-10-07-patch-04    (9-September-2022)
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
+
+ >> gemc Init:  Instantiating Run Conditions...
+
+ >> gemc Init:  Registering Detectors Factories...
+ TEXT Factory: >>  Importing Detector: experiments/mine/mine with TEXT factory, variation mini_panel_spiral
+ >> gemc Init:  Initializing Material Factories...
+
+ >> gemc Init:  Initializing Mirrors Factories...
+
+ >> gemc Init:  Registering Parameters Factories...
+  > gemc Init:  MYSQL Parameters Factory is Initialized 
+  > gemc Init:  TEXT Parameters Factory is Initialized 
+ >> gemc Init:  Building gemc Process Hit Factory...
+
+  >> Registering experiment "mine" hit processes 
+
+ >> gemc Init:  Creating fields Map...
+ > Solenoid binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_transsolenoid_x161_y161_z321_March2021.dat
+ > Torus binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_torus_r251_phi181_z251_03March2020.dat
+ > Solenoid binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_transsolenoid_x161_y161_z321_March2021.dat
+ > Torus binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_torus_r251_phi181_z251_08May2018.dat
+ > Solenoid binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_transsolenoid_x161_y161_z321_March2021.dat
+ > Torus binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_torus_r251_phi181_z251_25Jan2021.dat
+ > Solenoid binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_transsolenoid_x161_y161_z321_March2021.dat
+ > Torus binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Symm_torus_r2501_phi16_z251_24Apr2018.dat
+ > Solenoid binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_transsolenoid_x321_y161_z321_April2024.dat
+ > Torus binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_torus_r251_phi181_z251_03March2020.dat
+ > Solenoid binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_transsolenoid_x321_y161_z321_April2024.dat
+ > Torus binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_torus_r251_phi181_z251_08May2018.dat
+ > Solenoid binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_transsolenoid_x321_y161_z321_April2024.dat
+ > Torus binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_torus_r251_phi181_z251_25Jan2021.dat
+ > Solenoid binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_transsolenoid_x321_y161_z321_April2024.dat
+ > Torus binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Symm_torus_r2501_phi16_z251_24Apr2018.dat
+ > Solenoid binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Symm_solenoid_r601_phi1_z1201_13June2018.dat
+ > Torus binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_torus_r251_phi181_z251_03March2020.dat
+ > Solenoid binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Symm_solenoid_r601_phi1_z1201_13June2018.dat
+ > Torus binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_torus_r251_phi181_z251_08May2018.dat
+ > Solenoid binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Symm_solenoid_r601_phi1_z1201_13June2018.dat
+ > Torus binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_torus_r251_phi181_z251_25Jan2021.dat
+ > Solenoid binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Symm_solenoid_r601_phi1_z1201_13June2018.dat
+ > Torus binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Symm_torus_r2501_phi16_z251_24Apr2018.dat
+ > Solenoid binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Symm_solenoid_r601_phi1_z1201_2008.dat
+ > Torus binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_torus_r251_phi181_z251_03March2020.dat
+ > Solenoid binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Symm_solenoid_r601_phi1_z1201_2008.dat
+ > Torus binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_torus_r251_phi181_z251_08May2018.dat
+ > Solenoid binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Symm_solenoid_r601_phi1_z1201_2008.dat
+ > Torus binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Full_torus_r251_phi181_z251_25Jan2021.dat
+ > Solenoid binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Symm_solenoid_r601_phi1_z1201_2008.dat
+ > Torus binary map name: /cvmfs/oasis.opensciencegrid.org/jlab/geant4/noarch/data/magfield/Symm_torus_r2501_phi16_z251_24Apr2018.dat
+ >> gemc Init:  Building Detector Map...
+ >> gemc Init:  Initializing Physics List STD + FTFP_BERT...
+MINE explicit optical physics: scintillation/Birks, absorption, Fresnel boundary, exponential WLS; no Cherenkov or unmeasured scattering; $Name: geant4-10-07-patch-04 $
+ >> gemc Init:  Initializing User Actions...
+
+ Beam Settings >>  Beam Type: mu-
+ Beam Settings >>  Beam Momentum: 10 GeV
+ Beam Settings >>  Beam Direction: (theta, phi) = (0, 0) deg
+ Beam Settings >>  Beam Vertex: (0, 0, -10) cm (dvx, dvy, dvz) = (0, 0, 0) cm, flat spread
+ Beam Settings >>  Beam polarization: 100%
+ Beam Settings >>  Polarization Direction: (theta, phi) = (0, 0)
+ >> gemc Init:  Initializing User Interface...
+ >> gemc Init:  Initializing Output Action...
+ Output File: >>  Opening output file "/work/clas12Tags_mine/build/validation/mini_panel_spiral_20261122/mini_ideal_final.hipo".
+ Defining Hipo4 schemas...
+ Done defining Hipo4 schemas.
+ Initializing hipoSchema
+ >> gemc Init:  Initializing Run Manager...
+
+ >> Construction: Building Detector from Geometry STL Map...
+MINI_CONTAINMENT_PASS inset_mm=0.0005 surface_probes=3472
+MINE MINI_SPIRAL_GEOMETRY fibers=2 length_mm=4278.66,4278.66 segments=217 S_error_mm=3.83082e-05 lift_spacing_correction_mm=0.00359635 sensor_gel_mm=1 roof_deg=30 sipm=ideal opticalHash=2717160815808850
+
+ hInelastic FTFP_BERT : threshold between BERT and FTFP is over the interval 
+ for pions :   3 to 6 GeV
+ for kaons :   3 to 6 GeV
+ for proton :  3 to 6 GeV
+ for neutron : 3 to 6 GeV
+
+### Birks coefficients used in run time
+   ScintillatorB     0.126 mm/MeV     0.0130032 g/cm^2/MeV  massFactor=  103.651 effCharge= 0.0299401
+   MINE_mini_1_EJ200     0.126 mm/MeV     0.0128898 g/cm^2/MeV  massFactor=  103.651 effCharge= 0.0299401
+   G4_POLYSTYRENE     0.07943 mm/MeV     0.00841958 g/cm^2/MeV  massFactor=  101.167 effCharge= 0.027027
+MINE active scintillation: particle=mu-; stack_photons=1; Birks=1; yield_factor=1; enhanced_time_constants=0
+MINE active scintillation: particle=e-; stack_photons=1; Birks=1; yield_factor=1; enhanced_time_constants=0
+ >> gemc Init:  Creating gemc Banks Map...
+ >> gemc Init:  Writing simulation parameters in the output...
+ >> gemc Init:  Executing initial directives...
+
+
+====================================================================
+                  HADRONIC PROCESSES SUMMARY (verbose level 1)
+
+---------------------------------------------------
+                           Hadronic Processes for neutron
+
+  Process: hadElastic
+        Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
+     Cr_sctns:        G4NeutronElasticXS: 0 eV  ---> 100 TeV
+
+  Process: neutronInelastic
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:      G4NeutronInelasticXS: 0 eV  ---> 100 TeV
+
+  Process: nCapture
+        Model:               nRadCapture: 0 eV  ---> 100 TeV
+     Cr_sctns:        G4NeutronCaptureXS: 0 eV  ---> 100 TeV
+
+  Process: nKiller
+
+---------------------------------------------------
+                           Hadronic Processes for B-
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: B-Inelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for D-
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: D-Inelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for GenericIon
+
+  Process: ionInelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+
+---------------------------------------------------
+                           Hadronic Processes for He3
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+
+  Process: He3Inelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+
+---------------------------------------------------
+                           Hadronic Processes for alpha
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+
+  Process: alphaInelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+
+---------------------------------------------------
+                           Hadronic Processes for anti_He3
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
+        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+
+  Process: anti_He3Inelastic
+        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for anti_alpha
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
+        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+
+  Process: anti_alphaInelastic
+        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for anti_deuteron
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
+        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+
+  Process: anti_deuteronInelastic
+        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for anti_lambda
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: anti_lambdaInelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for anti_neutron
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
+        Model:              AntiAElastic: 100 MeV ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+
+  Process: anti_neutronInelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for anti_proton
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
+        Model:              AntiAElastic: 100 MeV ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+
+  Process: anti_protonInelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for anti_triton
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
+        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+
+  Process: anti_tritonInelastic
+        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for deuteron
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+
+  Process: dInelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+
+---------------------------------------------------
+                           Hadronic Processes for e+
+
+  Process: electronNuclear
+        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for e-
+
+  Process: electronNuclear
+        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for gamma
+
+  Process: photonNuclear
+        Model:               GammaNPreco: 0 eV  ---> 200 MeV
+        Model:            BertiniCascade: 199 MeV ---> 6 GeV
+        Model:           TheoFSGenerator: 3 GeV ---> 100 TeV
+     Cr_sctns:            PhotoNuclearXS: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for kaon+
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: kaon+Inelastic
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for kaon-
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: kaon-Inelastic
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: hBertiniCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for lambda
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: lambdaInelastic
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for mu+
+
+  Process: muonNuclear
+        Model:      G4MuonVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:     KokoulinMuonNuclearXS: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for mu-
+
+  Process: muonNuclear
+        Model:      G4MuonVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:     KokoulinMuonNuclearXS: 0 eV  ---> 100 TeV
+
+  Process: muMinusCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for pi+
+
+  Process: hadElastic
+        Model:           hElasticGlauber: 0 eV  ---> 100 TeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+  Process: pi+Inelastic
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for pi-
+
+  Process: hadElastic
+        Model:           hElasticGlauber: 0 eV  ---> 100 TeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+  Process: pi-Inelastic
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+  Process: hBertiniCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for proton
+
+  Process: hadElastic
+        Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+  Process: protonInelastic
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for sigma-
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: sigma-Inelastic
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: hBertiniCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for triton
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+
+  Process: tInelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+
+================================================================
+=======================================================================
+======       Pre-compound/De-excitation Physics Parameters     ========
+=======================================================================
+Type of pre-compound inverse x-section              3
+Pre-compound model active                           1
+Pre-compound excitation low energy (MeV)            0.1
+Pre-compound excitation high energy (MeV)           30
+Type of de-excitation inverse x-section             3
+Type of de-excitation factory                       Evaporation+GEM
+Number of de-excitation channels                    68
+Min excitation energy (keV)                         0.01
+Min energy per nucleon for multifragmentation (MeV) 2e+05
+Limit excitation energy for Fermi BreakUp (MeV)     20
+Level density (1/MeV)                               0.075
+Use simple level density model                      1
+Use discrete excitation energy of the residual      0
+Time limit for long lived isomeres (ns)             1
+Isomer production flag                              1
+Internal e- conversion flag                         1
+Store e- internal conversion data                   0
+Electron internal conversion ID                     2
+Correlated gamma emission flag                      0
+Max 2J for sampling of angular correlations         10
+=======================================================================
+MINE inizio run 0: eventi richiesti=1 | gia scritti nel processo=0 | ETA disponibile dopo il primo evento
+MINE explicit optical response: geometry=mini_panel_spiral; sipmModel=ideal; additional timing jitter=0; tracked arrivals use full Geant4 times/wavelengths, without effective optical factors.
+MINE fine run: eventi=1/1 (100.0%) | scritti=1 | trascorso=00:02:07 | velocita=0.01 ev/s | ETA=00:00:00
+MINE totale eventi scritti nel processo=1 (output completato alla chiusura di GEMC)
+ > Total gemc time: 127.068 seconds.  Events only time: 126.382 seconds. 
+ > Closing Stepping Action.
+ Closing /work/clas12Tags_mine/build/validation/mini_panel_spiral_20261122/mini_ideal_final.hipo.
+ Output File: >>  Closing Hipo file "/work/clas12Tags_mine/build/validation/mini_panel_spiral_20261122/mini_ideal_final.hipo".
+
+
+-----> writing file index : entries = 1, position = 137760

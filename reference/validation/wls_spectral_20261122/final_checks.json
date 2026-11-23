@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "native_spectral_cases": 34,
+  "photons_per_case": 6000,
+  "identical_ordinary_core_cladding": true,
+  "wls_counted_once": true,
+  "y11_proxy": "mean YS4/YS6 loss coefficients",
+  "scalar_4m_disabled": true,
+  "native_slab_spectra": true,
+  "portable_regressions": true,
+  "hipo_profiles_verified": [
+    0,
+    1,
+    2
+  ],
+  "generation_reproduced_byte_for_byte": true,
+  "global_nominal_attenuation_matched": false,
+  "global_discrepancy_documented": true
+}

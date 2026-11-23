@@ -1,0 +1,49 @@
+{
+  "version": "Mu2eAnnaRaw_Yang2021_Fig3a_v1",
+  "fnal_tio2": {
+    "url": "https://github.com/Mu2e/CRVStandalone/blob/c56260aa5151332939764c2ac3f7b2e69c10e78e/wls/src/WLSDetectorConstruction.cc#L300",
+    "commit": "c56260aa5151332939764c2ac3f7b2e69c10e78e",
+    "source_sha256": "97e67a9a48ec607d17af1c042b6f219ec8a411377de9080f499780e805e95a21",
+    "companion_paper": "https://arxiv.org/abs/1910.04846",
+    "identity": "Surface intended for FNAL/NICADD coextruded PS/TiO2 CRV counters; baseline numbers attributed to Anna in the code",
+    "method": "Exact untuned p_TiO2 and refl_TiO2 arrays; original linear-energy interpolation",
+    "not_imported": "Mu2e subsequently applies R_tuned=1-0.75*(1-R_raw) to match its test beam; that empirical correction is NOT applied here",
+    "limits": [
+      "No original instrument/batch calibration accompanies these code values",
+      "High-energy plateau above 3.44 eV is an explicit source assumption",
+      "Angular reflection model is not copied from Mu2e; MINE uses its documented Lambertian approximation",
+      "Companion paper describes 0.25 mm, 30 wt% TiO2 coating; not identical to every FNAL/MINOS production"
+    ]
+  },
+  "yang2021": {
+    "url": "https://www.its.caltech.edu/~rzhu/papers/21_nim_Reflectance.pdf",
+    "doi": "10.1016/j.nima.2021.165043",
+    "source_pdf_sha256": "920e512f5775c5bcd8c9e71497e6bca5e351363564419bbe3c54c34b7f52f261",
+    "figure": "3(a), PDF page 2, unirradiated Tyvek 150 um / aluminized Mylar 10 um",
+    "measurement": "Integrating sphere, 10 deg incidence, relative to BaSO4 reference",
+    "systematic_uncertainty": "about 0.01 absolute in relative reflectance, 250-800 nm",
+    "method": "Embedded 1309x1386 raster; colored curve pixel medians, 5 nm sampling, no smoothing; omit red trace where occluded near 390 nm",
+    "calibration_pixels": {
+      "x200": 154,
+      "x800": 1274,
+      "y0": 626,
+      "y100": 170
+    },
+    "pixel_selection": {
+      "columns": "round(x) +/- 1",
+      "y_range": [
+        160,
+        390
+      ],
+      "tyvek": "R>180,B>180,G<130",
+      "mylar": "R>180,G<100,B<100"
+    },
+    "limits": [
+      "Curves are relative reflectance, not an absolute measurement of MINE per-contact survival",
+      "Runtime multiplies by coatingReferenceAlbedo; unity is an explicit ideal-reference approximation/upper envelope",
+      "Do not generalize these particular film samples to every Mylar/Tyvek grade",
+      "Tyvek is modeled as Lambertian only as an effective approximation; measured BRDF can differ"
+    ]
+  },
+  "runtime": "Probability ordinate: NO spectral-density Jacobian. Clamp unresolved endpoints outside support; generated FNAL/EJ200/Y11 spectra are inside measured Yang support. No translations or peak matching."
+}

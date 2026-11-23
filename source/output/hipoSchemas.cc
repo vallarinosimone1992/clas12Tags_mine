@@ -1,6 +1,8 @@
 // gemc headers
 #include "outputFactory.h"
 #include "hipoSchemas.h"
+#include "../hitprocess/mine/mine_hipo_schema.h"
+#include "../hitprocess/mine/mine_config_metadata.h"
 
 HipoSchema::HipoSchema() {
 
@@ -31,6 +33,10 @@ HipoSchema::HipoSchema() {
 
 
     // detectors
+    mineDgtSchema = hipo::schema("MINE::dgt", 4600, 2);
+    mineOpticalSchema = hipo::schema("MINE::optical", 4600, 3);
+    mineConfigSchema = hipo::schema("MINE::config", 4600, 4);
+    mcWlsSchema = hipo::schema("MC::WLS", 40, 6);
     alertAhdcTDCSchema = hipo::schema("AHDC::tdc", 22400, 12);
     alertAhdcADCSchema = hipo::schema("AHDC::adc", 22400, 11);
     alertAhdcWFSchema = hipo::schema("AHDC::wf", 22400, 10);
@@ -162,11 +168,22 @@ HipoSchema::HipoSchema() {
     rawVTPSchema.parse("crate/B, word/I");
     rawEPICSSchema.parse("json/B");
 
+    mineDgtSchema.parse(mine::HipoDgtSchema());
+    // Sensor-plane arrivals before PDE. Time is global ns, wavelength nm,
+    // pathLength is the complete photon path in mm, including WLS ancestry.
+    mineOpticalSchema.parse("panel/I,sensor/I,track/I,parent/I,time/D,wavelength/D,pathLength/D,detected/I,pdeApplied/I,hitn/I,entryRole/I,fiber/I,firstWlsFiber/I,nWls/I,entryFiber/I");
+    mineConfigSchema.parse(mine::ConfigMetadataSchema);
+    mcWlsSchema.parse("panel/I,fiber/I,track/I,parent/I,time/D,wavelength/D,x/D,y/D,z/D,secondaryCount/I,hitn/I");
+
     emptySchema.parse("empty/B");
 
+    schemasToLoad["MINE::config"] = mineConfigSchema;
     schemasToLoad["RUN::config"] = runConfigSchema;
     schemasToLoad["RUN::rf"] = runRFSchema;
     schemasToLoad["MC::True"] = trueInfoSchema;
+    schemasToLoad["MINE::dgt"] = mineDgtSchema;
+    schemasToLoad["MINE::optical"] = mineOpticalSchema;
+    schemasToLoad["MC::WLS"] = mcWlsSchema;
 
     // generators
     schemasToLoad["MC::Particle"] = geantParticle;

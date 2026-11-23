@@ -22,6 +22,8 @@
 
 // gemc headers
 #include "MDetectorConstruction.h"
+#include "mine/mine_geant4_optics.h"
+#include "mine/mine_optical_event.h"
 
 // mlibrary
 #include "gstring.h"
@@ -43,6 +45,7 @@ MDetectorConstruction::~MDetectorConstruction() {
 
 
 G4VPhysicalVolume *MDetectorConstruction::Construct() {
+    mine::ResetGeant4OpticsRegistry();
     string hd_msg = gemcOpt.optMap["LOG_MSG"].args + " >> Construction:";
     double VERB = gemcOpt.optMap["G4P_VERBOSITY"].arg;
     double geo_verb = gemcOpt.optMap["GEO_VERBOSITY"].arg;
@@ -50,6 +53,12 @@ G4VPhysicalVolume *MDetectorConstruction::Construct() {
 
     // Clean old geometry, if any
     G4GeometryManager::GetInstance()->OpenGeometry();
+    if(mine::geant4OpticalMode()) {
+        // GUI reconstruction replaces every volume and recreates mirrors.
+        // Surfaces must not retain pointers to the previous physical store.
+        G4LogicalBorderSurface::CleanSurfaceTable();
+        G4LogicalSkinSurface::CleanSurfaceTable();
+    }
     G4PhysicalVolumeStore::GetInstance()->Clean();
     G4LogicalVolumeStore::GetInstance()->Clean();
     G4SolidStore::GetInstance()->Clean();
@@ -207,6 +216,33 @@ G4VPhysicalVolume *MDetectorConstruction::Construct() {
                 gdmlAlreadyProcessed.insert(filename);
             }
         }
+    }
+
+    if (mine::geant4OpticalMode()) {
+        const auto& config=mine::ActiveGeant4OpticsConfig();
+        int panels=0;
+        for (auto& entry:*hallMap) {
+            auto& panel=entry.second;
+            if(panel.sensitivity!="mine" || !panel.exist || !panel.GetPhysical()) continue;
+            if(panel.variation!=config.geometry)
+                throw std::runtime_error("MINE Geant4 optical config geometry does not match the detector variation");
+            if(panel.identity.empty()) throw std::runtime_error("MINE optical panel lacks identifier");
+            const auto parent=hallMap->find(panel.mother);
+            if(parent==hallMap->end()) throw std::runtime_error("MINE optical panel mother missing");
+            const auto& optical=mine::BuildGeant4Optics(panel.GetPhysical(),parent->second.GetPhysical(),
+                                                       panel.identity.front().id,config);
+            // Particle energy lost in fiber/readout material belongs to the
+            // same panel truth. Optical absorption is excluded by its SD.
+            auto* sd=panel.GetLogical()->GetSensitiveDetector();
+            for(auto* pv:optical.cores) pv->GetLogicalVolume()->SetSensitiveDetector(sd);
+            for(auto* pv:optical.claddings) pv->GetLogicalVolume()->SetSensitiveDetector(sd);
+            if(optical.filler) optical.filler->GetLogicalVolume()->SetSensitiveDetector(sd);
+            for(auto* pv:optical.fillers)
+                if(pv && pv!=optical.filler)pv->GetLogicalVolume()->SetSensitiveDetector(sd);
+            for(auto* pv:optical.sensors) pv->GetLogicalVolume()->SetSensitiveDetector(sd);
+            ++panels;
+        }
+        if(panels!=1) throw std::runtime_error("MINE Geant4 phase 1 requires exactly one active panel");
     }
 
     // build mirrors

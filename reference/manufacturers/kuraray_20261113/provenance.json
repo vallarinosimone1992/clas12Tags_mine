@@ -1,0 +1,25 @@
+{
+  "documents": [
+    {
+      "file": "kuraray_psf_meeting_20261113.pdf",
+      "original_path": "/Users/simone/Library/Containers/com.apple.mail/Data/Library/Mail Downloads/E350D40F-DE34-40CD-9067-20FD3F6DFC13/Kuraray\u3010To BA-Teq_INFN\u3011PSF meeting 13th-Nov-2026_for share.pdf",
+      "sha256": "302eaf062585cb783599f8eb7975e93e6e25932b8dfc8d1db61e37b96bcb77c1",
+      "source_kind": "manufacturer meeting material supplied by user",
+      "received_on": "2026-11-20",
+      "meeting_date": "2026-11-13",
+      "source_modified": false
+    },
+    {
+      "file": "nagorna_kuraray_answers.pptx",
+      "original_path": "/Users/simone/Library/Containers/com.apple.mail/Data/Library/Mail Downloads/9DF914DC-3EA9-4B7A-B055-38A434D1FA52/Nagorna Kuraray Answers.pptx",
+      "sha256": "42457d359689fc96ef2769d5d35206d606399afce069eded9fa79459375329c0",
+      "source_kind": "manufacturer meeting material supplied by user",
+      "received_on": "2026-11-20",
+      "meeting_date": "2026-11-13",
+      "source_modified": false
+    }
+  ],
+  "review": "PDF text plus visual inspection of technical pages; PPTX slide XML and embedded images plus rendering of all six slides. No digitized simulation tables created and no physics values changed.",
+  "baseline_affected": false,
+  "baseline_reference": "simulation_time_resolution/results/final/corner_fan_completed_46000"
+}

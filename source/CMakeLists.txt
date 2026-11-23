@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 4.1)
 project(source)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 include_directories(detector)
 include_directories(fields)
@@ -228,6 +228,22 @@ add_executable(source
         hitprocess/flux_hitprocess.h
         hitprocess/HitProcess_MapRegister.cc
         hitprocess/HitProcess_MapRegister.h
+        hitprocess/mine/mine_hitprocess.cc
+        hitprocess/mine/mine_geant4_optics.cc
+        hitprocess/mine/mine_mini_spiral_model.cc
+        hitprocess/mine/mine_mini_geant4.cc
+        hitprocess/mine/mine_geant4_tracking.cc
+        hitprocess/mine/mine_optical_geometry_model.cc
+        hitprocess/mine/mine_hitprocess.h
+        hitprocess/mine/mine_parameters.cc
+        hitprocess/mine/mine_parameters.h
+        hitprocess/mine/mine_response.cc
+        hitprocess/mine/mine_response.h
+        hitprocess/mine/mine_waveform.cc
+        hitprocess/mine/mine_waveform.h
+        hitprocess/mine/mine_fiber_geometry.h
+        hitprocess/mine/mine_fiber_layouts.h
+        hitprocess/mine/mine_sipm_pde.h
         hitprocess/mirror_hitprocess.cc
         hitprocess/mirror_hitprocess.h
         materials/cpp_materials.cc
@@ -297,6 +313,9 @@ add_executable(source
         src/MDetectorConstruction.h
         src/MEventAction.cc
         src/MEventAction.h
+        src/MineRunAction.cc
+        src/MineRunAction.h
+        src/MineProgress.h
         src/MPrimaryGeneratorAction.cc
         src/MPrimaryGeneratorAction.h
         src/MSteppingAction.cc

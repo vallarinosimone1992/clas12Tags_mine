@@ -3,6 +3,7 @@
 
 // gemc headers
 #include "MSteppingAction.h"
+#include "mine/mine_geant4_tracking.h"
 
 MSteppingAction::MSteppingAction(goptions Opt)
 {
@@ -21,6 +22,10 @@ MSteppingAction::~MSteppingAction(){ cout << " > Closing Stepping Action." << en
 
 void MSteppingAction::UserSteppingAction(const G4Step* aStep)
 {
+	// Explicit MINE optics must retain full tails and arbitrarily many physical
+	// reflections; GEMC's legacy 100/10000-step and energy/position cuts do not
+	// define optical losses. Geant4 absorption/escape/sensors terminate tracks.
+	if(mine::RecordGeant4OpticalStep(aStep)) return;
 	G4ThreeVector   pos   = aStep->GetPostStepPoint()->GetPosition();      ///< Global Coordinates of interaction
 	G4Track*        track = aStep->GetTrack();
 

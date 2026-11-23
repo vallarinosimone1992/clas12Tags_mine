@@ -1,0 +1,2 @@
+# Keep digitized/reference CSV bytes unchanged: provenance includes file hashes.
+*.csv -text

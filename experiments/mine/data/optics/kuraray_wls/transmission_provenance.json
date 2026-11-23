@@ -1,0 +1,41 @@
+{
+  "source": "Kuraray meeting 13 November 2026, page 7, transmission loss",
+  "inputs": {
+    "ys4": {
+      "file": "ys4_transmission.csv",
+      "sha256": "51202ee18452782b40a60c6854e0e55e2b88d1eaff89c9ccc4771b2385a54b72",
+      "support_nm": [
+        497.176,
+        699.502
+      ]
+    },
+    "ys6": {
+      "file": "ys6_transmission.csv",
+      "sha256": "db00f071dff67f63a5fe980271ff27f8f1af84a1d3b92b1b013a686eef28d3bf",
+      "support_nm": [
+        486.213,
+        699.502
+      ]
+    }
+  },
+  "source_pdf_sha256": "302eaf062585cb783599f8eb7975e93e6e25932b8dfc8d1db61e37b96bcb77c1",
+  "generator": "scripts/generate_mine_kuraray_transmission.py",
+  "generator_sha256": "457863161fe04db88f73aa769a7137cf3fb427213620d7f1e0e126c9d5000ca5",
+  "units": "source dB/km; alpha[mm^-1] = A*ln(10)/1e7; L[mm]=1/alpha",
+  "y11_proxy": "Arithmetic mean of YS4 and YS6 in attenuation coefficients, on common measured support; NOT a Y11 measurement",
+  "assumptions": {
+    "axial_mapping": "Near-axis monochromatic extinction: actual ray path approximately equals axial distance. Geant4 still tracks actual path for other angles.",
+    "ordinary_common": "For lambda>=520 nm use source transmission loss. Below 520 nm hold the 520-nm ordinate; identical ABSLENGTH for core and cladding.",
+    "wls_red_tail": "From first measured transmission wavelength to 520 nm allocate source loss minus ordinary loss to WLS; zero beyond 520 nm; no second copy of the same extinction.",
+    "blue_join": "Preserve original dye absorption through 480 nm, join logarithmically in coefficient to the transmission-derived tail at first measured wavelength.",
+    "concentration": "Tail calibrated at effective 200 ppm; scale WLS only with C/200 for systematic changes.",
+    "endpoints": "Ordinary loss held constant beyond last measured wavelength and below 520 nm; no claim of measured UV/IR behavior.",
+    "interpretation": "Transmission curve interpreted as removal from original wavelength/mode; re-emitted photons are tracked separately, not silently counted as unshifted transmission."
+  },
+  "limits": [
+    "Core/cladding loss equality is user-authorized effective approximation, not equality of refractive indices or chemical composition",
+    "Decomposition into host and weak WLS tail is not uniquely measured; manufacturer spectral bandwidth/mode protocol unspecified",
+    "Native spectral check tests implementation against input curves, not experimental validation of the decomposition",
+    "No scalar 4-m correction is added, and no integral attenuation length is forced"
+  ]
+}

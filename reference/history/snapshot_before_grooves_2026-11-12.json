@@ -1,0 +1,490 @@
+{
+  "date": "2026-11-12",
+  "scope": "Snapshot of GEMC MINE local inputs; provenance classification is in decisions.md; not automatically refreshed. Runtime opticalHash is a different identifier.",
+  "files": [
+    {
+      "path": "experiments/mine/data/optics/coatings/aluminized_mylar.csv",
+      "sha256": "8fcbc483c96fb9a1e3064c80117a399ee0d8fce65f0b2bf7b40f3adb0243907b"
+    },
+    {
+      "path": "experiments/mine/data/optics/coatings/bc621_provenance.json",
+      "sha256": "3024d40afb61e75ffb6cd7206dccd4539fd52656b0f528771f2895abe32bb7db"
+    },
+    {
+      "path": "experiments/mine/data/optics/coatings/bc621_reference_points.csv",
+      "sha256": "99f0efb13fe4dd1c1f49bcfbf3c647a1d09912fff471a112ed4e6277ebbe5af2"
+    },
+    {
+      "path": "experiments/mine/data/optics/coatings/fnal_tio2_energy.csv",
+      "sha256": "8e10540dd15c7728740a7f328cc724e7fe3aa8ee25c1f62ed8734ea9492ab2cd"
+    },
+    {
+      "path": "experiments/mine/data/optics/coatings/mine_coating_spectral_data.h",
+      "sha256": "ee5096d6c998b322efc8cc3329aa2c92282fa79ec7dcec5d9dc75a352feda37d"
+    },
+    {
+      "path": "experiments/mine/data/optics/coatings/spectral_provenance.json",
+      "sha256": "33e2fe771a1fc05268833b7a1ec788e78bc4f3c2ef2f28f67e8471889dff883e"
+    },
+    {
+      "path": "experiments/mine/data/optics/coatings/tyvek.csv",
+      "sha256": "0c5d885dad1c70b5009ee41385c4ecbfe1a213a7aa5ce63565d57f51bd1349d6"
+    },
+    {
+      "path": "experiments/mine/data/optics/scintillators/ej200.csv",
+      "sha256": "06a445bd817a456e573297535f088ab9379dd11d0ab65a542d165012e5aa698d"
+    },
+    {
+      "path": "experiments/mine/data/optics/scintillators/fnal_extruded.csv",
+      "sha256": "f709a9da9f4e428f768f6736afaf06abcf9189f60fc5c8b2a0d7e149ec392e4f"
+    },
+    {
+      "path": "experiments/mine/data/optics/scintillators/fnal_relative_transmission.csv",
+      "sha256": "af34df39f5c8be52b26304e4c81bcd9c3aeed7e40745529fe401892d5c7c1e90"
+    },
+    {
+      "path": "experiments/mine/data/optics/scintillators/mine_scintillation_spectral_data.h",
+      "sha256": "26fa6e0ac1c98af17d7b6276276313aea4c25b72efb969871e61e57f59434fe3"
+    },
+    {
+      "path": "experiments/mine/data/optics/scintillators/provenance.json",
+      "sha256": "27b1c444d93cdb4c7bee51374cb75ec0fdca60c0fd1df7b11815fb096824239a"
+    },
+    {
+      "path": "experiments/mine/data/optics/y11/mine_y11_spectral_data.h",
+      "sha256": "91489d742fc6dfa27cc4e0512e5aec6cf82a9e78c6cd1a9c51fb02327c640d2e"
+    },
+    {
+      "path": "experiments/mine/data/optics/y11/provenance.json",
+      "sha256": "470293a1329ff22d3ea3bfbe5a0be0f85101350e94a3c18333826da3d8a1543e"
+    },
+    {
+      "path": "experiments/mine/data/optics/y11/y11_absorption.csv",
+      "sha256": "4775f60852760ea27552ce7eddbdfe6aeeb35f8159e531ce4f8ee25092da9c10"
+    },
+    {
+      "path": "experiments/mine/data/optics/y11/y11_emission.csv",
+      "sha256": "b7363b2bc3aa730fbc67c003ed455e8600cb69d4be10bba2bce864f198377aa8"
+    },
+    {
+      "path": "experiments/mine/geant4_geometry_only.conf",
+      "sha256": "29b4e82cd41de517a3464891a4f400df7989784148628e0a9ffe1c424d8ae9bb",
+      "configured_values": {
+        "model": "monochromatic_effective",
+        "fiberModel": "Y-11",
+        "sensorCount": "2",
+        "fiberCount": "15",
+        "diagonal": "bl_tr",
+        "pitchMm": "100",
+        "minBendRadiusMm": "100",
+        "fiberDiameterMm": "1",
+        "claddingFraction": "0.02",
+        "zMcMm": "0.5",
+        "readoutInsetMm": "10",
+        "readoutWidthMm": "20",
+        "readoutHeightMm": "1.5",
+        "autoFit": "1",
+        "checkOverlaps": "1",
+        "nScintillator": "1.58",
+        "nCore": "1.59",
+        "nCladding": "1.49",
+        "coatingModel": "specular",
+        "reflectivity": "0.98",
+        "birksMmPerMeV": "0.126",
+        "lightYieldPerMeV": "8000",
+        "scintillationDecayNs": "2.5",
+        "scintillationWavelengthNm": "425",
+        "wlsWavelengthNm": "476",
+        "wlsDecayNs": "6.9",
+        "wlsQuantumYield": "1",
+        "wlsAbsorptionLengthMm": "0",
+        "bulkAbsorptionLengthMm": "1000",
+        "coreAbsorptionLengthMm": "0",
+        "claddingAbsorptionLengthMm": "0",
+        "effectiveFiberAttenuationMm": "0"
+      }
+    },
+    {
+      "path": "experiments/mine/geant4_optics.conf",
+      "sha256": "1823ab2d9230016aab24a817819aa1ef5e1c754ad8f23be6b4fe8f39f054a9fd",
+      "configured_values": {
+        "model": "spectral_y11",
+        "wlsDyeConcentrationPpm": "200",
+        "wlsEmissionConvention": "photon_per_nm",
+        "fiberModel": "Y-11",
+        "sensorCount": "2",
+        "fiberCount": "15",
+        "diagonal": "bl_tr",
+        "pitchMm": "100",
+        "minBendRadiusMm": "100",
+        "fiberDiameterMm": "1",
+        "claddingFraction": "0.02",
+        "zMcMm": "0.5",
+        "readoutInsetMm": "10",
+        "readoutWidthMm": "20",
+        "readoutHeightMm": "1.5",
+        "autoFit": "1",
+        "checkOverlaps": "1",
+        "nScintillator": "1.58",
+        "nCore": "1.59",
+        "nCladding": "1.49",
+        "coatingModel": "specular",
+        "coatingMaterial": "aluminized_mylar",
+        "coatingReferenceAlbedo": "1",
+        "birksMmPerMeV": "0.126",
+        "lightYieldPerMeV": "8000",
+        "scintillationDecayNs": "2.5",
+        "scintillationSpectrum": "monochromatic",
+        "scintillationEmissionConvention": "photon_per_nm",
+        "scintillationWavelengthNm": "425",
+        "wlsWavelengthNm": "476",
+        "wlsDecayNs": "6.9",
+        "wlsQuantumYield": "1",
+        "bulkAbsorptionLengthMm": "1000",
+        "coreAbsorptionLengthMm": "0",
+        "claddingAbsorptionLengthMm": "0",
+        "effectiveFiberAttenuationMm": "0"
+      }
+    },
+    {
+      "path": "experiments/mine/geant4_optics.conf.example",
+      "sha256": "27df8e390b5725d3d6d905fc4663f5a1b883d7604b82008bd291319ca71bec05"
+    },
+    {
+      "path": "experiments/mine/geant4_optics_bc621_constant.conf",
+      "sha256": "b84141c85468c1821621234c52f2c388f2a8647c985dcd9e1a32cd370da3a80c",
+      "configured_values": {
+        "model": "spectral_y11",
+        "wlsDyeConcentrationPpm": "200",
+        "wlsEmissionConvention": "photon_per_nm",
+        "fiberModel": "Y-11",
+        "sensorCount": "2",
+        "fiberCount": "15",
+        "diagonal": "bl_tr",
+        "pitchMm": "100",
+        "minBendRadiusMm": "100",
+        "fiberDiameterMm": "1",
+        "claddingFraction": "0.02",
+        "zMcMm": "0.5",
+        "readoutInsetMm": "10",
+        "readoutWidthMm": "20",
+        "readoutHeightMm": "1.5",
+        "autoFit": "1",
+        "checkOverlaps": "1",
+        "nScintillator": "1.58",
+        "nCore": "1.59",
+        "nCladding": "1.49",
+        "coatingModel": "diffuse",
+        "reflectivity": "0.92",
+        "birksMmPerMeV": "0.126",
+        "lightYieldPerMeV": "8000",
+        "scintillationDecayNs": "2.5",
+        "scintillationSpectrum": "monochromatic",
+        "scintillationEmissionConvention": "photon_per_nm",
+        "scintillationWavelengthNm": "425",
+        "wlsWavelengthNm": "476",
+        "wlsDecayNs": "6.9",
+        "wlsQuantumYield": "1",
+        "bulkAbsorptionLengthMm": "1000",
+        "coreAbsorptionLengthMm": "0",
+        "claddingAbsorptionLengthMm": "0",
+        "effectiveFiberAttenuationMm": "0"
+      }
+    },
+    {
+      "path": "experiments/mine/geant4_optics_diffuse.conf",
+      "sha256": "fbaa7b07669899e2349789d022bb6c0b985c449b04b4b440e621f7f4da5720a1",
+      "configured_values": {
+        "model": "spectral_y11",
+        "wlsDyeConcentrationPpm": "200",
+        "wlsEmissionConvention": "photon_per_nm",
+        "fiberModel": "Y-11",
+        "sensorCount": "2",
+        "fiberCount": "15",
+        "diagonal": "bl_tr",
+        "pitchMm": "100",
+        "minBendRadiusMm": "100",
+        "fiberDiameterMm": "1",
+        "claddingFraction": "0.02",
+        "zMcMm": "0.5",
+        "readoutInsetMm": "10",
+        "readoutWidthMm": "20",
+        "readoutHeightMm": "1.5",
+        "autoFit": "1",
+        "checkOverlaps": "1",
+        "nScintillator": "1.58",
+        "nCore": "1.59",
+        "nCladding": "1.49",
+        "coatingModel": "diffuse",
+        "coatingMaterial": "fnal_tio2",
+        "birksMmPerMeV": "0.126",
+        "lightYieldPerMeV": "8000",
+        "scintillationDecayNs": "2.5",
+        "scintillationSpectrum": "monochromatic",
+        "scintillationEmissionConvention": "photon_per_nm",
+        "scintillationWavelengthNm": "425",
+        "wlsWavelengthNm": "476",
+        "wlsDecayNs": "6.9",
+        "wlsQuantumYield": "1",
+        "bulkAbsorptionLengthMm": "1000",
+        "coreAbsorptionLengthMm": "0",
+        "claddingAbsorptionLengthMm": "0",
+        "effectiveFiberAttenuationMm": "0"
+      }
+    },
+    {
+      "path": "experiments/mine/geant4_optics_ej200.conf",
+      "sha256": "077dc3fc48cbc8565f6056479f5eefe990a444245d3be9fcb184c4edaef7496f",
+      "configured_values": {
+        "model": "spectral_y11",
+        "wlsDyeConcentrationPpm": "200",
+        "wlsEmissionConvention": "photon_per_nm",
+        "fiberModel": "Y-11",
+        "sensorCount": "2",
+        "fiberCount": "15",
+        "diagonal": "bl_tr",
+        "pitchMm": "100",
+        "minBendRadiusMm": "100",
+        "fiberDiameterMm": "1",
+        "claddingFraction": "0.02",
+        "zMcMm": "0.5",
+        "readoutInsetMm": "10",
+        "readoutWidthMm": "20",
+        "readoutHeightMm": "1.5",
+        "autoFit": "1",
+        "checkOverlaps": "1",
+        "nScintillator": "1.58",
+        "nCore": "1.59",
+        "nCladding": "1.49",
+        "coatingModel": "specular",
+        "coatingMaterial": "aluminized_mylar",
+        "coatingReferenceAlbedo": "1",
+        "birksMmPerMeV": "0.126",
+        "lightYieldPerMeV": "8000",
+        "scintillationDecayNs": "2.5",
+        "scintillationSpectrum": "ej200",
+        "scintillationEmissionConvention": "photon_per_nm",
+        "scintillationWavelengthNm": "425",
+        "wlsWavelengthNm": "476",
+        "wlsDecayNs": "6.9",
+        "wlsQuantumYield": "1",
+        "bulkAbsorptionLengthMm": "1000",
+        "coreAbsorptionLengthMm": "0",
+        "claddingAbsorptionLengthMm": "0",
+        "effectiveFiberAttenuationMm": "0"
+      }
+    },
+    {
+      "path": "experiments/mine/geant4_optics_fnal_extruded.conf",
+      "sha256": "11affe39d9364af189db1e3c23027bf99e0c2dbfacfd4cbc2b9fe32dfb6f6583",
+      "configured_values": {
+        "model": "spectral_y11",
+        "wlsDyeConcentrationPpm": "200",
+        "wlsEmissionConvention": "photon_per_nm",
+        "fiberModel": "Y-11",
+        "sensorCount": "2",
+        "fiberCount": "15",
+        "diagonal": "bl_tr",
+        "pitchMm": "100",
+        "minBendRadiusMm": "100",
+        "fiberDiameterMm": "1",
+        "claddingFraction": "0.02",
+        "zMcMm": "0.5",
+        "readoutInsetMm": "10",
+        "readoutWidthMm": "20",
+        "readoutHeightMm": "1.5",
+        "autoFit": "1",
+        "checkOverlaps": "1",
+        "nScintillator": "1.58",
+        "nCore": "1.59",
+        "nCladding": "1.49",
+        "coatingModel": "specular",
+        "coatingMaterial": "aluminized_mylar",
+        "coatingReferenceAlbedo": "1",
+        "birksMmPerMeV": "0.126",
+        "lightYieldPerMeV": "8000",
+        "scintillationDecayNs": "2.5",
+        "scintillationSpectrum": "fnal_extruded",
+        "scintillationEmissionConvention": "photon_per_nm",
+        "scintillationWavelengthNm": "425",
+        "wlsWavelengthNm": "476",
+        "wlsDecayNs": "6.9",
+        "wlsQuantumYield": "1",
+        "bulkAbsorptionLengthMm": "1000",
+        "coreAbsorptionLengthMm": "0",
+        "claddingAbsorptionLengthMm": "0",
+        "effectiveFiberAttenuationMm": "0"
+      }
+    },
+    {
+      "path": "experiments/mine/geant4_optics_monochromatic.conf",
+      "sha256": "a4747b23b851ed46b896de990faabb4bba407e5a9ae89a24edf3a13625c50add",
+      "configured_values": {
+        "model": "monochromatic_effective",
+        "fiberModel": "Y-11",
+        "sensorCount": "2",
+        "fiberCount": "15",
+        "diagonal": "bl_tr",
+        "pitchMm": "100",
+        "minBendRadiusMm": "100",
+        "fiberDiameterMm": "1",
+        "claddingFraction": "0.02",
+        "zMcMm": "0.5",
+        "readoutInsetMm": "10",
+        "readoutWidthMm": "20",
+        "readoutHeightMm": "1.5",
+        "autoFit": "1",
+        "checkOverlaps": "1",
+        "nScintillator": "1.58",
+        "nCore": "1.59",
+        "nCladding": "1.49",
+        "coatingModel": "specular",
+        "reflectivity": "0.98",
+        "birksMmPerMeV": "0.126",
+        "lightYieldPerMeV": "8000",
+        "scintillationDecayNs": "2.5",
+        "scintillationWavelengthNm": "425",
+        "wlsWavelengthNm": "476",
+        "wlsDecayNs": "6.9",
+        "wlsQuantumYield": "1",
+        "wlsAbsorptionLengthMm": "0.34",
+        "bulkAbsorptionLengthMm": "1000",
+        "coreAbsorptionLengthMm": "0",
+        "claddingAbsorptionLengthMm": "0",
+        "effectiveFiberAttenuationMm": "0"
+      }
+    },
+    {
+      "path": "experiments/mine/geant4_optics_tyvek.conf",
+      "sha256": "546b21a468dc7a09740098703f54c42af50bf6d4ced4c15fb179acb375caced8",
+      "configured_values": {
+        "model": "spectral_y11",
+        "wlsDyeConcentrationPpm": "200",
+        "wlsEmissionConvention": "photon_per_nm",
+        "fiberModel": "Y-11",
+        "sensorCount": "2",
+        "fiberCount": "15",
+        "diagonal": "bl_tr",
+        "pitchMm": "100",
+        "minBendRadiusMm": "100",
+        "fiberDiameterMm": "1",
+        "claddingFraction": "0.02",
+        "zMcMm": "0.5",
+        "readoutInsetMm": "10",
+        "readoutWidthMm": "20",
+        "readoutHeightMm": "1.5",
+        "autoFit": "1",
+        "checkOverlaps": "1",
+        "nScintillator": "1.58",
+        "nCore": "1.59",
+        "nCladding": "1.49",
+        "coatingModel": "diffuse",
+        "coatingMaterial": "tyvek",
+        "coatingReferenceAlbedo": "1",
+        "birksMmPerMeV": "0.126",
+        "lightYieldPerMeV": "8000",
+        "scintillationDecayNs": "2.5",
+        "scintillationSpectrum": "monochromatic",
+        "scintillationEmissionConvention": "photon_per_nm",
+        "scintillationWavelengthNm": "425",
+        "wlsWavelengthNm": "476",
+        "wlsDecayNs": "6.9",
+        "wlsQuantumYield": "1",
+        "bulkAbsorptionLengthMm": "1000",
+        "coreAbsorptionLengthMm": "0",
+        "claddingAbsorptionLengthMm": "0",
+        "effectiveFiberAttenuationMm": "0"
+      }
+    },
+    {
+      "path": "experiments/mine/mine__parameters_corner_fan.txt",
+      "sha256": "0c2c9922e248b01350d88ffc10d5905f2e0e690e029c21d4bca4a4e9f061f349",
+      "parameters_text": "mine_use_optical_table | 1 | counts | Use common optical_response.dat for geometry, transport and both sensors; 0 legacy model\nmine_birks | 0.126 | counts | Birks mm/MeV\nmine_light_yield | 8000 | counts | Extruded scintillator photons per MeV visible energy\nmine_decay_time | 2.5 | ns | Scintillation exponential decay\nmine_bulk_attenuation | 1000 | mm | Effective 100 cm bulk attenuation\nmine_bulk_velocity | 170 | counts | Effective bulk speed in mm/ns\nmine_collection_efficiency | 0.01 | counts | UNCALIBRATED pre-trapping capture and re-emission probability; NOT the 6.2 percent guided fraction\nmine_readout_mode | 1 | counts | 0 reference; 1 WLS; 2 direct fiber\nmine_fiber_model | 0 | counts | 0 Y-11(200) single clad; 1 future YS-6 hypothesis; profile supplies attenuation decay and emission peak\nmine_fiber_layout | 3 | counts | diagonal_corner_fan from quick_corner_fan.conf\nmine_readout_end | 0 | counts | Physical sensor end 0 or 1; one response per run\nmine_wls_trapping_efficiency | 0.031 | counts | Per end fraction conditional on re-emission; 0.062 for both ends before attenuation\nmine_coupling_efficiency | 1 | counts | Neutral coupling factor to be measured\nmine_fiber_length | 0 | mm | Extra tail after geometrical route; sole path with layout 0\nideal_SiPM | 0 | counts | 1 gives PDE unity no saturation no dark no cross-talk no afterpulse; preserves photon statistics\nmine_spectral_pde | 1 | counts | Use digitized Hamamatsu S13360-3075CS wavelength-dependent PDE at 25 C and plus 3 V\nmine_photon_wavelength_nm | 425 | counts | Unshifted scintillation peak proxy in nm; WLS uses fiber profile peak\nmine_gain | 1 | counts | Normalized charge per avalanche\nmine_pixels | 1600 | counts | S13360-3075CS 3x3 mm 75 um cells\nmine_crosstalk | 0.07 | counts | Datasheet typical at plus 3 V\nmine_dark_rate | 0.0005 | counts | 500 kcps per device expressed in inverse ns\nmine_afterpulse | 0 | counts | Not specified quantitatively in datasheet; disabled\nmine_corner_fibers | 14 | counts | Even fiber count; no central fiber\nmine_fiber_pitch | 100 | mm | Virtual vertices spacing on opposite diagonal\nmine_corner_diagonal | 0 | counts | 0 bl_tr; 1 tl_br\nmine_fiber_z | 0.5 | mm | Fiber centerline Z\nmine_min_bend_radius | 100 | mm | Single clad Non-S 1 mm reference\nmine_curve_step | 2 | mm | Curve discretization step\nmine_sensor_pitch | 1.2 | mm | End packing pitch where used; corner paths share exact endpoints\n"
+    },
+    {
+      "path": "experiments/mine/mine__parameters_default.txt",
+      "sha256": "f93ab499ca6beccd300fd2e8e000a18d92f794618ed6976b0b977a1c9ee6aa58",
+      "parameters_text": "mine_use_optical_table | 1 | counts | Use common optical_response.dat for geometry, transport and both sensors; 0 legacy model\nmine_birks | 0.126 | counts | Birks mm/MeV\nmine_light_yield | 8000 | counts | Extruded scintillator photons per MeV visible energy\nmine_decay_time | 2.5 | ns | Scintillation exponential decay\nmine_bulk_attenuation | 1000 | mm | Effective 100 cm bulk attenuation\nmine_bulk_velocity | 170 | counts | Effective bulk speed in mm/ns\nmine_collection_efficiency | 0.01 | counts | UNCALIBRATED pre-trapping capture and re-emission probability; NOT the 6.2 percent guided fraction\nmine_readout_mode | 1 | counts | 0 reference; 1 WLS; 2 direct fiber\nmine_fiber_model | 0 | counts | 0 Y-11(200) single clad; 1 future YS-6 hypothesis; profile supplies attenuation decay and emission peak\nmine_fiber_layout | 1 | counts | 0 anchor; 1 compact fan; 2 legacy double; 3 corner; 4 triple; 5 panel double; 6 straight\nmine_readout_end | 0 | counts | Physical sensor end 0 or 1; one response per run\nmine_wls_trapping_efficiency | 0.031 | counts | Per end fraction conditional on re-emission; 0.062 for both ends before attenuation\nmine_coupling_efficiency | 1 | counts | Neutral coupling factor to be measured\nmine_fiber_length | 0 | mm | Extra tail after geometrical route; sole path with layout 0\nideal_SiPM | 0 | counts | 1 gives PDE unity no saturation no dark no cross-talk no afterpulse; preserves photon statistics\nmine_spectral_pde | 1 | counts | Use digitized Hamamatsu S13360-3075CS wavelength-dependent PDE at 25 C and plus 3 V\nmine_photon_wavelength_nm | 425 | counts | Unshifted scintillation peak proxy in nm; WLS uses fiber profile peak\nmine_gain | 1 | counts | Normalized charge per avalanche\nmine_pixels | 1600 | counts | S13360-3075CS 3x3 mm 75 um cells\nmine_crosstalk | 0.07 | counts | Datasheet typical at plus 3 V\nmine_dark_rate | 0.0005 | counts | 500 kcps per device expressed in inverse ns\nmine_afterpulse | 0 | counts | Not specified quantitatively in datasheet; disabled\n"
+    },
+    {
+      "path": "experiments/mine/mine__parameters_panel_double_serpentine.txt",
+      "sha256": "9b2e1a8f103447adb4f2cffed15eb9d626e95288e30f2262402545a6a86c4728",
+      "parameters_text": "mine_use_optical_table | 1 | counts | Use common optical_response.dat for geometry, transport and both sensors; 0 legacy model\nmine_birks | 0.126 | counts | Birks mm/MeV\nmine_light_yield | 8000 | counts | Extruded scintillator photons per MeV visible energy\nmine_decay_time | 2.5 | ns | Scintillation exponential decay\nmine_bulk_attenuation | 1000 | mm | Effective 100 cm bulk attenuation\nmine_bulk_velocity | 170 | counts | Effective bulk speed in mm/ns\nmine_collection_efficiency | 0.01 | counts | UNCALIBRATED pre-trapping capture and re-emission probability; NOT the 6.2 percent guided fraction\nmine_readout_mode | 1 | counts | 0 reference; 1 WLS; 2 direct fiber\nmine_fiber_model | 0 | counts | 0 Y-11(200) single clad; 1 future YS-6 hypothesis; profile supplies attenuation decay and emission peak\nmine_fiber_layout | 5 | counts | Panel-fitted double serpentine\nmine_readout_end | 0 | counts | Physical sensor end 0 or 1; one response per run\nmine_wls_trapping_efficiency | 0.031 | counts | Per end fraction conditional on re-emission; 0.062 for both ends before attenuation\nmine_coupling_efficiency | 1 | counts | Neutral coupling factor to be measured\nmine_fiber_length | 0 | mm | Extra tail after geometrical route; sole path with layout 0\nideal_SiPM | 0 | counts | 1 gives PDE unity no saturation no dark no cross-talk no afterpulse; preserves photon statistics\nmine_spectral_pde | 1 | counts | Use digitized Hamamatsu S13360-3075CS wavelength-dependent PDE at 25 C and plus 3 V\nmine_photon_wavelength_nm | 425 | counts | Unshifted scintillation peak proxy in nm; WLS uses fiber profile peak\nmine_gain | 1 | counts | Normalized charge per avalanche\nmine_pixels | 1600 | counts | S13360-3075CS 3x3 mm 75 um cells\nmine_crosstalk | 0.07 | counts | Datasheet typical at plus 3 V\nmine_dark_rate | 0.0005 | counts | 500 kcps per device expressed in inverse ns\nmine_afterpulse | 0 | counts | Not specified quantitatively in datasheet; disabled\nmine_fiber_pitch | 100 | mm | Adjacent-lane spacing\nmine_edge_margin | 100 | mm | Panel edge margin\nmine_serpentine_orientation | 0 | counts | 0 vertical; 1 horizontal\nmine_auto_sensor_placement | 1 | counts | Place readouts near first and last lane pairs\nmine_fiber_z | 0.5 | mm | Fiber centerline Z\nmine_min_bend_radius | 100 | mm | Single clad Non-S 1 mm reference\nmine_curve_step | 2 | mm | Curve discretization step\nmine_sensor_pitch | 1.2 | mm | End packing pitch where used; corner paths share exact endpoints\n"
+    },
+    {
+      "path": "experiments/mine/mine__parameters_parallel_fan_in.txt",
+      "sha256": "6073574359ca1a6e7ba9b75389c04677115ab5152abfc2dbc2276c64c47493ef",
+      "parameters_text": "mine_use_optical_table | 1 | counts | Use common optical_response.dat for geometry, transport and both sensors; 0 legacy model\nmine_birks | 0.126 | counts | Birks mm/MeV\nmine_light_yield | 8000 | counts | Extruded scintillator photons per MeV visible energy\nmine_decay_time | 2.5 | ns | Scintillation exponential decay\nmine_bulk_attenuation | 1000 | mm | Effective 100 cm bulk attenuation\nmine_bulk_velocity | 170 | counts | Effective bulk speed in mm/ns\nmine_collection_efficiency | 0.01 | counts | UNCALIBRATED pre-trapping capture and re-emission probability; NOT the 6.2 percent guided fraction\nmine_readout_mode | 1 | counts | 0 reference; 1 WLS; 2 direct fiber\nmine_fiber_model | 0 | counts | 0 Y-11(200) single clad; 1 future YS-6 hypothesis; profile supplies attenuation decay and emission peak\nmine_fiber_layout | 1 | counts | Compact fan matching quick_parallel.conf\nmine_readout_end | 0 | counts | Physical sensor end 0 or 1; one response per run\nmine_wls_trapping_efficiency | 0.031 | counts | Per end fraction conditional on re-emission; 0.062 for both ends before attenuation\nmine_coupling_efficiency | 1 | counts | Neutral coupling factor to be measured\nmine_fiber_length | 0 | mm | Extra tail after geometrical route; sole path with layout 0\nideal_SiPM | 0 | counts | 1 gives PDE unity no saturation no dark no cross-talk no afterpulse; preserves photon statistics\nmine_spectral_pde | 1 | counts | Use digitized Hamamatsu S13360-3075CS wavelength-dependent PDE at 25 C and plus 3 V\nmine_photon_wavelength_nm | 425 | counts | Unshifted scintillation peak proxy in nm; WLS uses fiber profile peak\nmine_gain | 1 | counts | Normalized charge per avalanche\nmine_pixels | 1600 | counts | S13360-3075CS 3x3 mm 75 um cells\nmine_crosstalk | 0.07 | counts | Datasheet typical at plus 3 V\nmine_dark_rate | 0.0005 | counts | 500 kcps per device expressed in inverse ns\nmine_afterpulse | 0 | counts | Not specified quantitatively in datasheet; disabled\nmine_parallel_fibers | 10 | counts | Fibers at 100 mm pitch\nmine_fiber_pitch | 100 | mm | Adjacent-fiber spacing\nmine_straight_ymin | -250 | mm | Minimum common straight section start\nmine_straight_ymax | 250 | mm | Minimum common straight section end\nmine_sensor0_y | -500 | mm | Readout at lower panel edge\nmine_sensor1_y | 500 | mm | Readout at upper panel edge\nmine_fiber_z | 0.5 | mm | Fiber centerline Z\nmine_min_bend_radius | 100 | mm | Single clad Non-S 1 mm reference\nmine_curve_step | 2 | mm | Curve discretization step\nmine_sensor_pitch | 1.2 | mm | End packing pitch where used; corner paths share exact endpoints\n"
+    },
+    {
+      "path": "experiments/mine/mine__parameters_triple_serpentine.txt",
+      "sha256": "0ee87ecf863f464273c8a4224e799eee1d1840f67861eeccb243ccd16f893ccc",
+      "parameters_text": "mine_use_optical_table | 1 | counts | Use common optical_response.dat for geometry, transport and both sensors; 0 legacy model\nmine_birks | 0.126 | counts | Birks mm/MeV\nmine_light_yield | 8000 | counts | Extruded scintillator photons per MeV visible energy\nmine_decay_time | 2.5 | ns | Scintillation exponential decay\nmine_bulk_attenuation | 1000 | mm | Effective 100 cm bulk attenuation\nmine_bulk_velocity | 170 | counts | Effective bulk speed in mm/ns\nmine_collection_efficiency | 0.01 | counts | UNCALIBRATED pre-trapping capture and re-emission probability; NOT the 6.2 percent guided fraction\nmine_readout_mode | 1 | counts | 0 reference; 1 WLS; 2 direct fiber\nmine_fiber_model | 0 | counts | 0 Y-11(200) single clad; 1 future YS-6 hypothesis; profile supplies attenuation decay and emission peak\nmine_fiber_layout | 4 | counts | Three fibers each with four lanes\nmine_readout_end | 0 | counts | Physical sensor end 0 or 1; one response per run\nmine_wls_trapping_efficiency | 0.031 | counts | Per end fraction conditional on re-emission; 0.062 for both ends before attenuation\nmine_coupling_efficiency | 1 | counts | Neutral coupling factor to be measured\nmine_fiber_length | 0 | mm | Extra tail after geometrical route; sole path with layout 0\nideal_SiPM | 0 | counts | 1 gives PDE unity no saturation no dark no cross-talk no afterpulse; preserves photon statistics\nmine_spectral_pde | 1 | counts | Use digitized Hamamatsu S13360-3075CS wavelength-dependent PDE at 25 C and plus 3 V\nmine_photon_wavelength_nm | 425 | counts | Unshifted scintillation peak proxy in nm; WLS uses fiber profile peak\nmine_gain | 1 | counts | Normalized charge per avalanche\nmine_pixels | 1600 | counts | S13360-3075CS 3x3 mm 75 um cells\nmine_crosstalk | 0.07 | counts | Datasheet typical at plus 3 V\nmine_dark_rate | 0.0005 | counts | 500 kcps per device expressed in inverse ns\nmine_afterpulse | 0 | counts | Not specified quantitatively in datasheet; disabled\nmine_fiber_pitch | 80 | mm | Adjacent-lane spacing\nmine_edge_margin | 80 | mm | Panel edge margin\nmine_fiber_z | 0.5 | mm | Fiber centerline Z\nmine_min_bend_radius | 100 | mm | Single clad Non-S 1 mm reference\nmine_curve_step | 2 | mm | Curve discretization step\nmine_sensor_pitch | 1.2 | mm | End packing pitch where used; corner paths share exact endpoints\n"
+    },
+    {
+      "path": "geometry_source/mine/mine.pl",
+      "sha256": "fbb609c80998d035da24d8eb5731df2d634fe5df48befcf439a8d202fb18e8a5"
+    },
+    {
+      "path": "scripts/extract_mine_coating_spectra.py",
+      "sha256": "9de23a4e1f186cdac079ead62eeac12692564e5351294085c4b3e6d2d1cc75d8"
+    },
+    {
+      "path": "scripts/extract_mine_scintillator_spectra.py",
+      "sha256": "2f4cfd89a926355f8d48586994a2c42fbcff1ff86da83f23a4d4728dc22dffa9"
+    },
+    {
+      "path": "scripts/plot_mine_references.py",
+      "sha256": "64a9e737a2d7e3b9d2ee042661db82a10c8f6147e76c7536c58f772c12f75134",
+      "role": "Reference plotting only; no simulation input changes"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_coating_spectral_data.h",
+      "sha256": "ee5096d6c998b322efc8cc3329aa2c92282fa79ec7dcec5d9dc75a352feda37d"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_coating_spectrum.h",
+      "sha256": "8e164e289bc26191eae89d7548e171c46ab3fe88795381bc5e9dc5ddbc474386"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_geant4_optics.cc",
+      "sha256": "681886dbb45a66b5131b459f3a8a62929f4db2d175e179a3a74e8900846db8f1"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_optical_geometry_model.cc",
+      "sha256": "ed51b6d55f3522865ac8eb05ceda036388366e399805c14e5aeede81a6627f57"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_parameters.cc",
+      "sha256": "13e69909c9ed5de05f585532486433969dd623e7e4ace89940684fea62c57363"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_parameters.h",
+      "sha256": "850b3323942384565c42b1a57bee7df41b449422f15ca613b3ba679d99a26c6a"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_scintillation_spectral_data.h",
+      "sha256": "26fa6e0ac1c98af17d7b6276276313aea4c25b72efb969871e61e57f59434fe3"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_scintillation_spectrum.h",
+      "sha256": "bd94d9099d698f068ef4b5de7ed982ffa5cc71d7e681942fcd6a812cb6992420"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_sipm_pde.h",
+      "sha256": "3b51631ac9d3517c561e671b05c041c80921c35f67206054c3f3b5bf944ee3c3"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_wls_spectrum.h",
+      "sha256": "bc08d59db2fc2190f4bbb92b80eadb2e7ad36a1024fb654653b39b56d56a0d94"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_y11_spectral_data.h",
+      "sha256": "91489d742fc6dfa27cc4e0512e5aec6cf82a9e78c6cd1a9c51fb02327c640d2e"
+    },
+    {
+      "path": "source/physics/PhysicsList.cc",
+      "sha256": "329f9deea324405ba9d110f2cf3fd9a7609e525e7e89d41ce6eb8c82436a4b6f"
+    }
+  ]
+}

@@ -18,3 +18,12 @@ clas12.sqlite
 geometry_source/rich/cad/
 geometry_source/ctof/cad/
 geometry_source/ctof/cad_upstream/
+/experiments/mine/output/
+/experiments/mine/validation/
+
+# Local binaries, caches and validation runs (MINE umbrella).
+/build/
+/source/gemc
+/source/lib/
+__pycache__/
+*.pyc

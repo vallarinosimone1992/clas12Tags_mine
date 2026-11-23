@@ -1,0 +1,224 @@
+{
+  "files": [
+    {
+      "path": "/Users/simone/Work/INFN/MINE/MC_MINE_LightTrapping/config/mini_panel_spiral.conf",
+      "sha256": "ab83b64e53137121937671aa929a0e2d4a919755ad5609a4bc3808815190676d"
+    },
+    {
+      "path": "experiments/mine/geant4_optics_mini_panel_spiral.conf",
+      "sha256": "02b7db646d0e80cd09af0be0c210a589f9865b4d8487e52b8ed7ef185b65709d"
+    },
+    {
+      "path": "experiments/mine/geant4_optics_mini_panel_spiral_hamamatsu.conf",
+      "sha256": "ce81725100e160f7d34c6c09593e42df403a852a1c586375c09454539f728c86"
+    },
+    {
+      "path": "experiments/mine/mine__bank.txt",
+      "sha256": "9af02b8d7905e33f888fc97397952b0566b7aa20869f4bd4f7c2153f61a44684"
+    },
+    {
+      "path": "experiments/mine/mine__geometry_mini_panel_spiral.txt",
+      "sha256": "2e30d7b32ce886b3efeb7687c88f3b6ac5fa55ab18e6a1401ca771cc8bb4f41f"
+    },
+    {
+      "path": "experiments/mine/mine__hit_mini_panel_spiral.txt",
+      "sha256": "79b626d7cf29248781a35ed211677b02c9dde56ce39e32d5e71ddbf9c08dfad5"
+    },
+    {
+      "path": "experiments/mine/mine__parameters_mini_panel_spiral.txt",
+      "sha256": "f081b1cca74e8d878b5c3f0856299fc660f3086a40712932cf8709d5597bb3ea"
+    },
+    {
+      "path": "experiments/mine/mine_mini_panel_spiral.gcard",
+      "sha256": "03834c38c247f067ea6de85ccfe1a40b3068169a88ff837d7b5adc2df9836905"
+    },
+    {
+      "path": "scripts/docker_env.sh",
+      "sha256": "90e4f58b72eec082d398efc918bb2fdf3e87198f43253e7e09952fa331095e1f"
+    },
+    {
+      "path": "scripts/mine_launch_card.py",
+      "sha256": "5c23858a8c32ca5e48a045b682a5f8e63fdc7ae5237f7625c72c6f5f9a584a99"
+    },
+    {
+      "path": "scripts/mine_random_seed.py",
+      "sha256": "e3ac66bbeb0e2934d19bd2cd647cfef3ff9c8ff14acc51b2786844ef55e71631"
+    },
+    {
+      "path": "scripts/run_mine.sh",
+      "sha256": "95f66e3dee92c00394ac8454561537b6dcf29a2756f384485423f018eaa85ff8"
+    },
+    {
+      "path": "scripts/test_mine_launch.py",
+      "sha256": "e2b38aec808b28be3f9eb5f6fed6e6b126d673256d4f2b46952ea835600efa37"
+    },
+    {
+      "path": "scripts/test_mine_mini_panel.sh",
+      "sha256": "6f9f7fc43a9fefbe193bd89478da6002bbcd137c62bf2dae1d15be6d178e0938"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_coating_spectral_data.h",
+      "sha256": "ee5096d6c998b322efc8cc3329aa2c92282fa79ec7dcec5d9dc75a352feda37d"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_coating_spectrum.h",
+      "sha256": "8e164e289bc26191eae89d7548e171c46ab3fe88795381bc5e9dc5ddbc474386"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_fiber_geometry.h",
+      "sha256": "fcb9a9a8a8f3ecec8c8bf5623445e65c6ce60b8d2ff08a7337901599d2d715e2"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_fiber_layouts.h",
+      "sha256": "fb30fd94dfa87a2771e3b52aaf98666d0d9e0af059599bef74771230af9643a1"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_fiber_loss.h",
+      "sha256": "579e51a22207a0560184878c6374bd41bb753873265bd8b99b1be84968b17a6e"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_geant4_optics.cc",
+      "sha256": "45218302a9568e2fefdc6bd2c8976cba74d03e95d1a0b6d12b83373b79e44634"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_geant4_optics.h",
+      "sha256": "b3a35657e8fffe15f1da136fd897301f2d82ac8e5fece7cd0c2560d2d10d66ee"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_geant4_tracking.cc",
+      "sha256": "7e15785a2e5d81768e562d6c4bff51d5881c079420b201d5feda117faa23e7ff"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_geant4_tracking.h",
+      "sha256": "c84aef999c6cae0f9ba420d8861c18a7e60c06948105dddfde9a71b076b63785"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_groove_materials.h",
+      "sha256": "1b297cf219e0379f603226b14b1d22f18d97cf03c0961d226221e29a5b7dc641"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_hipo_schema.h",
+      "sha256": "972e522061ee5c7b5a566eb7c6c314b1d12c27eb40ec5a61c5c5c98ea740e222"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_hitprocess.cc",
+      "sha256": "3ffd9466868669e948ef6e130fdee142a7652ee2030577745ca3344b47d84088"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_hitprocess.h",
+      "sha256": "3e74c06a634a051c7b0e7ea063026cf30a95d42abee209d8940491d789babcb6"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_kuraray_transmission_data.h",
+      "sha256": "267813554aa87ece69be7c6e5f228404bf700b3134de9073d96d0748b07fcb0b"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_kuraray_wls_data.h",
+      "sha256": "67108ad967915a57d36a5c4ec2c954cb3513f41f474b32207ee86e2cd1ecdaa0"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_mini_geant4.cc",
+      "sha256": "22251a0abfbc0bf2c5cd9e18c03f3984df0e6d56bc058a43bd2bf801af1421e0"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_mini_spiral_model.cc",
+      "sha256": "0fbb18ee4a7cd529f2042db8f59c588443f55780b19ff1fb683bc2263bf43a0c"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_mini_spiral_model.h",
+      "sha256": "c4bd5f8958362b1a77d0d78fb83cbbde9eb79dd5947e32385be3f02def411727"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_optical_event.h",
+      "sha256": "ffc6d6be8c91900152d7ab957f60df4490df80be224a513a9bbc1aeeac4b3858"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_optical_geometry_model.cc",
+      "sha256": "d496bb17cdc24d233d8b96db7b7e2a6ce5358477c20b5be4736e4bb7f72564b0"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_optical_geometry_model.h",
+      "sha256": "fe3e1837b36f570dc849b00871cf2e04aaa27f2176808cae637137492437cfdf"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_optical_response.h",
+      "sha256": "86b7423a90446c7a8285865e4aa3c574dd839400924662fa1cea7695071edef2"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_parameters.cc",
+      "sha256": "08fd6820d808ae8b230580fb8236028a0f839581d0fa0ce6457c2ede5cee19cf"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_parameters.h",
+      "sha256": "3b797a7e9798fb042200d0b5cc45d977e7904efc0590845e11545cdc53b50d43"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_response.cc",
+      "sha256": "40f1e15d0bd2a4c59cc6f194cd56ff47da8485673432c89c7d97b97f91dc133f"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_response.h",
+      "sha256": "d389c1dc6f8fadfbc708509ece9a860fbe9ce601e15c36a7a8fb3a4fd4c5fe74"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_scintillation_spectral_data.h",
+      "sha256": "26fa6e0ac1c98af17d7b6276276313aea4c25b72efb969871e61e57f59434fe3"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_scintillation_spectrum.h",
+      "sha256": "bd94d9099d698f068ef4b5de7ed982ffa5cc71d7e681942fcd6a812cb6992420"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_sipm_pde.h",
+      "sha256": "3b51631ac9d3517c561e671b05c041c80921c35f67206054c3f3b5bf944ee3c3"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_waveform.cc",
+      "sha256": "0afec51f165819422316656d77012f610742e0b5d78dc78d95b605d91a8a4e83"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_waveform.h",
+      "sha256": "4bbc7d35015eae8fedd7169edd7561e1be7151a6dcfcbb49c0c8f190c63a777c"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_wls_spectrum.h",
+      "sha256": "7c65c75751959a6e9934dbe5afa76984cae363de1aa13249d7c079376e0d983b"
+    },
+    {
+      "path": "source/hitprocess/mine/mine_y11_spectral_data.h",
+      "sha256": "91489d742fc6dfa27cc4e0512e5aec6cf82a9e78c6cd1a9c51fb02327c640d2e"
+    },
+    {
+      "path": "source/hitprocess/mine/tests/geant4_mini_spiral_test.cc",
+      "sha256": "d907a02fc111c284de710037e05c6c1ec888dce5d5de7ce7012e5f951366032c"
+    },
+    {
+      "path": "source/hitprocess/mine/tests/hipo_optical_check.cc",
+      "sha256": "9266b3bb8e43afeb0fcd8abd4dc401fa056db64f9edf237cc116df4ef8c1b65a"
+    },
+    {
+      "path": "source/hitprocess/mine/tests/mini_spiral_model_test.cc",
+      "sha256": "74915310508d071db9cbbb142f0bad134ab548dc9adefeddaf187815357ce3ad"
+    },
+    {
+      "path": "source/physics/PhysicsList.cc",
+      "sha256": "6602e176bcb404ad3b7338a37f2b74aac194572190a42222366884035019300a"
+    },
+    {
+      "path": "source/src/MDetectorConstruction.cc",
+      "sha256": "01683bb3199c31db7e8b0dddceee847ab6d362f0a038ae061beccd33f6cf1a57"
+    },
+    {
+      "path": "scripts/plot_mine_mini_panel.py",
+      "sha256": "eec4adf1fb8a588c9572dc2b161520969233e1275cb86feedea178a6f208354a"
+    },
+    {
+      "path": "reference/plots/mini_panel_spiral.png",
+      "sha256": "8da1f1b31b7f7ab2b29cd0a0e6be8c50e8f9d1fe04b9f8af3894c636265a5bc5"
+    },
+    {
+      "path": "source/gemc",
+      "sha256": "25eea2819462d17e1446198ead9674968d4ee44340dadef661e252d206dbbc68"
+    }
+  ]
+}

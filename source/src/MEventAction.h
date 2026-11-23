@@ -16,6 +16,8 @@
 // G4 headers
 #include "G4UserEventAction.hh"
 
+class MineRunAction;
+
 // gemc headers
 #include "outputFactory.h"
 #include "gbank.h"
@@ -184,6 +186,7 @@ public:
     saveEventParams ssp;
 
 private:
+    MineRunAction* mineRunAction = nullptr;
     // background hits, key is event number
     // background hits
     string BGFILE;           ///< filename containing background hits
@@ -201,6 +204,7 @@ private:
     void set_and_show_rf_setup();
 
 public:
+    void SetMineRunAction(MineRunAction* action) { mineRunAction = action; }
     void BeginOfEventAction(const G4Event *);            ///< Routine at the start of each event
     void EndOfEventAction(const G4Event *);              ///< Routine at the end of each event
     void SetEvtNumber(int N) { evtN = N; }                 ///< Sets Event Number

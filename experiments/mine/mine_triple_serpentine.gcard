@@ -1,0 +1,23 @@
+<gcard>
+    <option name="HIT_PROCESS_LIST" value="mine"/>
+    <detector name="experiments/mine/mine" factory="TEXT" variation="triple_serpentine"/>
+
+    <!-- Generic GEMC world half-lengths; no external geometry or fields. -->
+    <option name="HALL_DIMENSIONS" value="1000*mm, 1000*mm, 1000*mm"/>
+    <option name="HALL_MATERIAL" value="G4_AIR"/>
+    <option name="HALL_FIELD" value="no"/>
+    <option name="FIELD_DIR" value="."/>
+    <option name="RFSETUP" value="no"/>
+
+    <!-- A 1 GeV/c muon starts upstream and travels along +Z. -->
+    <option name="BEAM_P" value="mu-, 1*GeV, 0*deg, 0*deg"/>
+    <option name="BEAM_V" value="(0, 0, -100)mm"/>
+    <option name="PHYSICS" value="STD + FTFP_BERT"/>
+    <option name="USE_GUI" value="0"/>
+    <option name="N" value="1"/>
+
+    <!-- INTEGRATEDDGT names systems whose digitization is DISABLED. -->
+    <option name="INTEGRATEDDGT" value="yes"/>
+    <option name="INTEGRATEDRAW" value="mine"/>
+    <option name="OUTPUT" value="hipo, experiments/mine/output/mine.hipo"/>
+</gcard>

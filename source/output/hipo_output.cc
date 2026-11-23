@@ -1,9 +1,14 @@
 // gemc headers
 #include "hipo_output.h"
 #include "gemcUtils.h"
+#include "../hitprocess/mine/mine_optical_event.h"
+#include "../hitprocess/mine/mine_config_metadata.h"
+#include "../hitprocess/mine/mine_geant4_optics.h"
+#include <sstream>
 
 // C++ headers
 #include <fstream>
+#include <stdexcept>
 
 // CLHEP units
 #include "CLHEP/Units/PhysicalConstants.h"
@@ -122,6 +127,9 @@ string hipo_output::getHipoVariableName(string trueInfoVar) {
 // instantiates hipo event
 // write run::config bank
 void hipo_output::writeHeader(outputContainer *output, map<string, double> data, gBank bank) {
+    // writeHeader is the event boundary before any digitized hit is appended;
+    // prepareEvent runs later, after digitization in GEMC.
+    minePanelHitNumbers.clear();
     int verbosity = int(output->gemcOpt.optMap["BANK_VERBOSITY"].arg);
 
     //	for(auto &fieldScale: fieldScales) {
@@ -180,7 +188,7 @@ void hipo_output::writeHeader(outputContainer *output, map<string, double> data,
 
 
     // RASTER constant initialization
-    if (rasterInitialized == -99) {
+    if (rasterInitialized == -99 && output->gemcOpt.optMap["HIT_PROCESS_LIST"].args != "mine") {
 
         // loading raster p0 and p1 from CCDB
         string digiVariation = output->gemcOpt.optMap["DIGITIZATION_VARIATION"].args;
@@ -434,6 +442,10 @@ void hipo_output::writeGenerated(outputContainer *output, vector <generatedParti
     }
     outEvent->addStructure(lundParticleBank);
 
+    // Standalone MINE has no CLAS12 raster: no CCDB calibration, synthetic
+    // raster bank, division by its zero slopes, or first-particle indexing.
+    if (output->gemcOpt.optMap["HIT_PROCESS_LIST"].args == "mine") return;
+
 
 
     // raster:
@@ -623,6 +635,34 @@ void hipo_output::writeG4DgtIntegrated(outputContainer *output, vector <hitOutpu
 
     // perform initializations if necessary
     initBank(output, thisHitBank, DGTINT_ID);
+
+    // MINE owns a response bank with both sensors and physical double-valued
+    // ADC/TDC quantities. The CLAS12 ADC_/TDC_ prefix adapter below would drop it.
+    if (hitType == "mine") {
+        hipo::bank response(output->hipoSchema->mineDgtSchema, HO.size());
+        for (unsigned nh=0; nh<HO.size(); ++nh) {
+            const auto values=HO[nh].getDgtz();
+            if(mine::geant4OpticalMode()) {
+                const auto panel=values.find("id"),hitn=values.find("hitn");
+                if(panel==values.end() || hitn==values.end())
+                    throw std::runtime_error("MINE response cannot identify its panel/hitn");
+                if(!minePanelHitNumbers.emplace(static_cast<int>(panel->second),static_cast<int>(hitn->second)).second)
+                    throw std::runtime_error("MINE optical arrivals require a unique response hit per panel");
+            }
+            for (const auto& field:dgtBank.orderedNames) {
+                const auto& name=field.second;
+                if (dgtBank.getVarId(name)<=0 || dgtBank.getVarBankType(name)!=DGTINT_ID) continue;
+                const auto value=values.find(name);
+                if (value==values.end()) throw std::runtime_error("MINE HIPO response missing field: "+name);
+                const auto type=dgtBank.getVarType(name);
+                if(type=="i") response.putInt(name.c_str(),nh,value->second);
+                else if(type=="d") response.putDouble(name.c_str(),nh,value->second);
+                else throw std::runtime_error("MINE unsupported HIPO response field type: "+name);
+            }
+        }
+        outEvent->addStructure(response);
+        return;
+    }
 
     // we only need the first hit to get the definitions
     map<string, double> dgts = HO[0].getDgtz();
@@ -901,6 +941,60 @@ void hipo_output::writeFADCMode7(outputContainer *output, vector <hitOutput> HO,
 
 void hipo_output::writeEvent(outputContainer *output) {
     outEvent->addStructure(*trueInfoBank);
+
+    if(mine::geant4OpticalMode()) {
+        static const auto configMetadata=[] {
+            const char* file=std::getenv("MINE_GEANT4_CONFIG");
+            if(!file||!*file)throw std::runtime_error("Missing optical config for HIPO metadata");
+            const auto loaded=mine::Geant4OpticsConfig::Load(file);
+            if(loaded.fingerprint!=mine::ActiveGeant4OpticsConfig().fingerprint)throw std::runtime_error("Optical config changed after initialization");
+            std::ifstream input(file,std::ios::binary);if(!input)throw std::runtime_error("Cannot read optical config for HIPO metadata");
+            std::ostringstream text;text<<input.rdbuf();
+            const char* original=std::getenv("MINE_GEANT4_SOURCE_CONFIG");
+            return std::make_pair(std::string(original&&*original?original:file),text.str());
+        }();
+        hipo::bank metadata(output->hipoSchema->mineConfigSchema,mine::ConfigMetadataRows(configMetadata.first,configMetadata.second));
+        mine::WriteConfigMetadata(metadata,configMetadata.first,configMetadata.second);
+        const auto required=std::size_t(outEvent->getSize())+2*configMetadata.first.size()+2*configMetadata.second.size()+1024;
+        if(outEvent->getEventBuffer().size()<required)outEvent->getEventBuffer().resize(required);
+        outEvent->addStructure(metadata);
+        const auto& arrivals=mine::OpticalEvent().arrivals;
+        hipo::bank optical(output->hipoSchema->mineOpticalSchema,arrivals.size());
+        for(std::size_t row=0;row<arrivals.size();++row) {
+            const auto& arrival=arrivals[row];
+            const auto hit=minePanelHitNumbers.find(arrival.panel);
+            optical.putInt("panel",row,arrival.panel);
+            optical.putInt("sensor",row,arrival.sensor);
+            optical.putInt("track",row,arrival.track);
+            optical.putInt("parent",row,arrival.parent);
+            optical.putDouble("time",row,arrival.time/ns);
+            optical.putDouble("wavelength",row,arrival.wavelengthNm);
+            optical.putDouble("pathLength",row,arrival.pathLength/mm);
+            optical.putInt("detected",row,arrival.pdeApplied?static_cast<int>(arrival.detected):-1);
+            optical.putInt("pdeApplied",row,arrival.pdeApplied?1:0);
+            // Optical-only primaries can reach sensors without any particle
+            // deposition: retain those arrivals with an explicit unjoined hit.
+            optical.putInt("hitn",row,hit==minePanelHitNumbers.end()?-1:hit->second);
+            optical.putInt("entryRole",row,arrival.entryRole);
+            optical.putInt("fiber",row,arrival.fiber);
+            optical.putInt("firstWlsFiber",row,arrival.firstWlsFiber);
+            optical.putInt("nWls",row,arrival.nWls);
+            optical.putInt("entryFiber",row,arrival.entryFiber);
+        }
+        if(!arrivals.empty()) outEvent->addStructure(optical);
+        const auto& absorptions=mine::OpticalEvent().wlsAbsorptions;
+        hipo::bank wls(output->hipoSchema->mcWlsSchema,absorptions.size());
+        for(std::size_t row=0;row<absorptions.size();++row) {
+            const auto& a=absorptions[row];const auto hit=minePanelHitNumbers.find(a.panel);
+            wls.putInt("panel",row,a.panel);wls.putInt("fiber",row,a.fiber);
+            wls.putInt("track",row,a.track);wls.putInt("parent",row,a.parent);
+            wls.putDouble("time",row,a.time/ns);wls.putDouble("wavelength",row,a.wavelengthNm);
+            wls.putDouble("x",row,a.x/mm);wls.putDouble("y",row,a.y/mm);wls.putDouble("z",row,a.z/mm);
+            wls.putInt("secondaryCount",row,a.secondaryCount);
+            wls.putInt("hitn",row,hit==minePanelHitNumbers.end()?-1:hit->second);
+        }
+        if(!absorptions.empty()) outEvent->addStructure(wls);
+    }
 
     output->hipoWriter->addEvent(*outEvent);
 

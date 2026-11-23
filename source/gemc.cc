@@ -35,6 +35,7 @@ const char *GEMC_VERSION = "gemc 6.2" ;
 #include "G4UImanager.hh"
 #include "G4UIterminal.hh"
 #include "G4VisExecutive.hh"
+#include "hitprocess/mine/mine_geant4_optics.h"
 #include "G4VModularPhysicsList.hh"
 #include "G4PropagatorInField.hh"
 #include "G4TransportationManager.hh"
@@ -67,6 +68,7 @@ const char *GEMC_VERSION = "gemc 6.2" ;
 
 // c++ headers
 #include <unistd.h>  // needed for get_pid
+#include <cstdlib>
 
 /////////////////////////
 /// <b> Main Program </b>
@@ -104,6 +106,12 @@ QCoreApplication *createApplication(int &argc, char *argv[], double use_gui) {
 
 
 int main(int argc, char **argv) {
+    // Safe build probe before any run/GUI/output initialization. The caller
+    // also supplies -help-all so an older binary can be queried harmlessly.
+    if(std::getenv("MINE_GEANT4_CAPABILITY")) {
+        std::cout << "MINE_GEANT4_OPTICS_V1" << std::endl;
+        return 0;
+    }
     clock_t startTime = clock();
     cout << endl;
 
@@ -251,6 +259,7 @@ int main(int argc, char **argv) {
     gemc_splash.message(" Initializing Run Manager...\n");
     // physical volumes, sensitive detectors are built here
     runManager->Initialize();
+    mine::RegisterGeant4OpticsVisualization(visManager);
 
     // registering activated field in the option so they're written out
     if (ExpHall->activeFields.size()) {
@@ -357,8 +366,8 @@ int main(int argc, char **argv) {
         if (nEventsToProcess > 0) {
             start_events = clock();
             char command[100];
-            // starting clock after the first event is much more precise
-            if (nEventsToProcess > 10) {
+            // Legacy CPU timing warmup; MINE keeps one run for wall-clock progress.
+            if (nEventsToProcess > 10 && !gActions->mineRunAction) {
                 snprintf(command, 100, "/run/beamOn 1");
                 UImanager->ApplyCommand(command);
                 start_events = clock();
@@ -381,8 +390,8 @@ int main(int argc, char **argv) {
         if (nEventsToProcess > 0) {
             start_events = clock();
             char command[100];
-            // starting clock after the first event is much more precise
-            if (nEventsToProcess > 10) {
+            // Legacy CPU timing warmup; MINE keeps one run for wall-clock progress.
+            if (nEventsToProcess > 10 && !gActions->mineRunAction) {
                 snprintf(command, 100, "/run/beamOn 1");
                 UImanager->ApplyCommand(command);
                 start_events = clock();
@@ -397,7 +406,7 @@ int main(int argc, char **argv) {
     clock_t clockAllTaken = endTime - startTime;
     clock_t clockEventTaken = endTime - start_events;
 
-    if (nEventsToProcess > 10) {
+    if (nEventsToProcess > 10 && !gActions->mineRunAction) {
         clockEventTaken = clockEventTaken * (nEventsToProcess + 1) / nEventsToProcess;
     }
 

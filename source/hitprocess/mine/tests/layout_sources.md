@@ -1,0 +1,14 @@
+# Fiber centerline source snapshot: 2026-10-19
+
+Adapted builders in mine_fiber_layouts.h originate from MC_MINE_LightTrapping.
+Only vector access, inline linkage and the point-count guard are adapted.
+The neighboring optical MC is not modified or required at runtime.
+
+SHA-256:
+
+20c041029ac5058952b43232e34e0a461c8b28d96e4865342495fcd8023e29a5  src/FiberGeometry.cpp
+0f870738501d975e0fc7f28dc210bb26f8933f25fef5f95da79ca66d64db64e8  src/PanelSerpentineGeometry.cpp
+3c32dd9c0e2bb4e6debbec0cdda14024da21f011d650dd7d84861ba7f30932d6  src/AlternativeGeometries.cpp
+60a6da5d006876960d4fd364524a0eeda94c11a1503f776f6b04946e9b2d1954  config/quick_corner_fan.conf
+90239f73094f0bb69475d9c504359c8e46f4eeefd015ae404cbafb0a57f27832  config/quick_triple_serpe.conf
+40ceed84b734715d59a91be394e8e7d6db6630010d8dd0b46bbad4dc669a509d  config/quick_double_serpe.conf

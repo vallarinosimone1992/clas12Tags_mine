@@ -1,0 +1,22 @@
+{
+  "source_url": "https://publications.rwth-aachen.de/record/673051/files/673051.pdf",
+  "download_mirror": "https://www.fz-juelich.de/++api++/de/jcns/jcns-2/downloads/dipdoc/doktorarbeit_herzkamp_pdf/@@download/file",
+  "source_pdf_sha256": "8c2216cc66c239d4ce02ae2531ee45013f8521f4ce8c7e6c10d32fff47e016b1",
+  "source": "Matthias Herzkamp, RWTH Aachen dissertation, 2016, printed pp.48-49",
+  "figure": "4.14 (PDF page 50), dotted Y11 curves; Table 4.4 absolute scale",
+  "normalization_k_430_ppm_inv_mm_inv": 0.0147,
+  "calibration": {
+    "x_430": 37.565443,
+    "x_490": 65.738885,
+    "y_zero": 46.394261,
+    "y_minus_one": 0.00037598,
+    "y_plus_one": 92.788145
+  },
+  "method": "Poppler SVG vector vertices; affine axes; no fitting, smoothing or extrapolated tail",
+  "emission_convention": "relative photon intensity per wavelength (per nm); assumed from plot wavelength axis",
+  "limitations": [
+    "Table 4.4 caption 10cm conflicts with table 10mm; k and transmission agree with 10mm",
+    "Relative curves are representative manufacturer data; unresolved absorption outside plot support set to zero",
+    "Photon-count vs radiant-power ordinate is not explicitly specified in source; photon-count convention is an assumption"
+  ]
+}

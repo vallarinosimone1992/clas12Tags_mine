@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "source_manifest_matches_current_files": true,
+  "extraction_reproduced_exactly": true,
+  "native_profiles": [
+    "Y-11",
+    "YS-6",
+    "YS-4"
+  ],
+  "photons_per_profile": 6000,
+  "monochromatic_control_photons": 6000,
+  "hipo_smoke_events_per_profile": 1,
+  "hipo_profile_ids": [
+    0,
+    1,
+    2
+  ],
+  "gemc_compiled": true,
+  "baseline_46000_modified": false
+}

@@ -1,0 +1,39 @@
+{
+  "source": "Kuraray PSF meeting 13 November 2026, page 7",
+  "source_pdf_sha256": "302eaf062585cb783599f8eb7975e93e6e25932b8dfc8d1db61e37b96bcb77c1",
+  "method": "Poppler SVG embedded RGB raster; exact color pixel medians, linear interpolation through dashed/occluded gaps; sampled every 2 nm; no fitted peaks",
+  "colors": {
+    "YS-4": [
+      244,
+      177,
+      131
+    ],
+    "YS-6": [
+      201,
+      201,
+      201
+    ]
+  },
+  "axes_spectra": {
+    "lambda300_x": 106,
+    "lambda700_x": 714,
+    "y_zero": 217,
+    "unit_height_pixels": 193
+  },
+  "axes_transmission": {
+    "lambda400_x": 112,
+    "lambda700_x": 714,
+    "y_zero": 384,
+    "y_2000": 24
+  },
+  "limitations": [
+    "Approximate raster curves, about 0.66 nm/pixel and 0.0052 relative ordinate/pixel; dashes and occlusion add uncertainty",
+    "Spectra in styrene monomer solution, not measured bulk absorption of solid fiber",
+    "Relative absorption normalized at each maximum; absolute peak cross section for YS unknown",
+    "Shared peak absorption coefficient 0.0147 ppm^-1 mm^-1 and effective 200 ppm are USER-AUTHORIZED TRANSFER ASSUMPTIONS from Y11, not Kuraray YS measurements",
+    "Photon/nm emission convention assumed; alternative power/nm supported",
+    "Zero dye coefficient outside source support; no invented weak tail",
+    "Emission below the two-pixel ordinate floor is truncated to zero within 2 nm of the last resolved point; tails there are unmeasured",
+    "Transmission loss is aggregate fiber data and is NOT installed as ordinary ABSLENGTH on top of WLS"
+  ]
+}

@@ -6,6 +6,12 @@ using namespace std;
 #include "PhysicsList.h"
 #include "PhysicsListMessenger.h"
 #include "string_utilities.h"
+#include "mine/mine_optical_event.h"
+#include "mine/mine_optical_geometry_model.h"
+#include "G4Version.hh"
+#if G4VERSION_NUMBER >= 1070
+#include "G4OpticalParameters.hh"
+#endif
 
 // mlibrary
 #include "gstring.h"
@@ -20,6 +26,10 @@ using namespace gstring;
 #include "G4Proton.hh"
 #include "G4DecayTable.hh"
 #include "G4ProcessTable.hh"
+#include "G4ProcessManager.hh"
+#include "G4Scintillation.hh"
+#include "G4Material.hh"
+#include "G4MaterialPropertiesTable.hh"
 
 // geant4 physics headers
 #include "G4DecayPhysics.hh"
@@ -108,6 +118,13 @@ PhysicsList::PhysicsList(goptions opts) : G4VModularPhysicsList()
 	cutForProton    = defaultCutValue;
 
 	physIngredients = getStringVectorFromStringWithDelimiter(ingredientsList, "+");
+	if(mine::geant4OpticalMode()) {
+		if(fastmcMode!=0) throw std::runtime_error("MINE explicit optics is incompatible with FASTMCMODE");
+		bool optical=false;
+		for(const auto& ingredient:physIngredients)
+			if(trimSpacesFromString(ingredient)=="Optical") optical=true;
+		if(!optical) physIngredients.push_back("Optical");
+	}
 
 	// G4VPhysicsConstructor
 	g4EMPhysics = nullptr;
@@ -388,7 +405,36 @@ void PhysicsList::cookPhysics()
 		G4OpticalPhysics* opticalPhysics = new G4OpticalPhysics();
 		// enable Mie scattering (do not think it is enabled by default)
 		// make this optional?
-		opticalPhysics->Configure(kMieHG, true);
+		if(mine::geant4OpticalMode()) {
+#if G4VERSION_NUMBER >= 1070
+			auto* optical=G4OpticalParameters::Instance();
+			optical->SetProcessActivation("Scintillation",true);
+			optical->SetProcessActivation("OpAbsorption",true);
+			optical->SetProcessActivation("OpBoundary",true);
+			optical->SetProcessActivation("OpWLS",true);
+			optical->SetProcessActivation("OpWLS2",false);
+			optical->SetProcessActivation("Cerenkov",false);
+			optical->SetProcessActivation("OpMieHG",false);
+			optical->SetProcessActivation("OpRayleigh",false);
+			optical->SetWLSTimeProfile("exponential");
+			optical->SetScintByParticleType(false);
+			optical->SetScintFiniteRiseTime(mine::ActiveGeant4OpticsConfig().scintillationRiseNs>0);
+			optical->SetScintTrackSecondariesFirst(false);
+#if G4VERSION_NUMBER < 1100
+			optical->SetScintEnhancedTimeConstants(false); // FASTCOMPONENT convention in 10.7.
+#endif
+#else
+			opticalPhysics->Configure(kCerenkov,false);
+			opticalPhysics->Configure(kMieHG,false);
+			opticalPhysics->Configure(kRayleigh,false);
+			opticalPhysics->SetWLSTimeProfile("exponential");
+			opticalPhysics->SetScintillationByParticleType(false);
+			opticalPhysics->SetFiniteRiseTime(mine::ActiveGeant4OpticsConfig().scintillationRiseNs>0);
+#endif
+			cout << "MINE explicit optical physics: scintillation/Birks, absorption, Fresnel boundary, exponential WLS; no Cherenkov or unmeasured scattering; " << G4Version << endl;
+		} else {
+			opticalPhysics->Configure(kMieHG, true);
+		}
 		
 		// this was deprecated?
 		// Method G4OpticalPhysics::SetWLSTimeProfile is deprecated.
@@ -442,6 +488,33 @@ void PhysicsList::ConstructProcess()
 
 		for(size_t i=0; i<g4HadronicPhysics.size(); i++)
 			g4HadronicPhysics[i]->ConstructProcess();
+
+		if(mine::geant4OpticalMode()) {
+			const bool diagnostics=std::getenv("MINE_OPTICAL_DIAGNOSTICS")!=nullptr;
+			for(auto* particle:std::vector<G4ParticleDefinition*>{G4MuonMinus::MuonMinusDefinition(),G4Electron::ElectronDefinition()}) {
+				auto* scint=dynamic_cast<G4Scintillation*>(processTable->FindProcess("Scintillation",particle));
+				if(!scint || !scint->GetStackPhotons() || !scint->GetSaturation() || scint->GetScintillationByParticleType())
+					throw std::runtime_error("MINE requires active scintillation with stacked photons and Birks saturation for mu-/e-");
+				cout << "MINE active scintillation: particle=" << particle->GetParticleName()
+				     << "; stack_photons=" << scint->GetStackPhotons()
+				     << "; Birks=" << (scint->GetSaturation()!=nullptr);
+#if G4VERSION_NUMBER < 1100
+				cout << "; yield_factor=" << scint->GetScintillationYieldFactor()
+				     << "; enhanced_time_constants=" << scint->GetEnhancedTimeConstants();
+				if(scint->GetScintillationYieldFactor()!=1 || scint->GetEnhancedTimeConstants())
+					throw std::runtime_error("MINE Geant4 10 requires yield factor 1 and legacy FASTCOMPONENT time constants");
+#endif
+				cout << endl;
+			}
+#if G4VERSION_NUMBER >= 1070
+			if(diagnostics) G4OpticalParameters::Instance()->Dump();
+#endif
+			if(diagnostics) for(auto* material:*G4Material::GetMaterialTable())
+				if(material->GetName().find("MINE_optical_")==0 && material->GetMaterialPropertiesTable()) {
+					cout << "MINE diagnostic material: " << material->GetName() << endl;
+					material->GetMaterialPropertiesTable()->DumpTable();
+				}
+		}
 
 		// sync radiation
 		G4SynchrotronRadiation*      fSync    = nullptr;

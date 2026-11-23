@@ -9,6 +9,9 @@
 // gemc headers
 #include "identifier.h"
 #include "sensitiveDetector.h"
+#include "../hitprocess/mine/mine_optical_event.h"
+#include "../hitprocess/mine/mine_geant4_optics.h"
+#include <stdexcept>
 
 // CLHEP units
 #include "CLHEP/Units/PhysicalConstants.h"
@@ -80,10 +83,15 @@ G4bool sensitiveDetector::ProcessHits(G4Step* aStep, G4TouchableHistory*)
 	}
 
 	G4Track *trk = aStep->GetTrack();
+	const bool explicitOptics = mine::geant4OpticalMode();
 	// cout << "   >  track is " << trk->GetDefinition()->GetParticleName() << endl ;
 
 	// do not record G4OpticalPhoton unless RECORD_OPTICALPHOTONS is set to 1
-	if(trk->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition() && RECORD_OPTICALPHOTONS == 0) {
+	// MINE records optical arrivals separately. Absorption energy and optical
+	// pass-throughs must never enter particle deposition truth, even when the
+	// generic framework RECORD_OPTICALPHOTONS option is requested.
+	if(trk->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition() &&
+	   (RECORD_OPTICALPHOTONS == 0 || explicitOptics)) {
 		if(verbosity > 5) {
 			cout << "   > RECORD_OPTICALPHOTONS is 0 and the track definition " << trk->GetDefinition() << " matches a photon " ;
 			cout << " sensitiveDetector::ProcessHits returning false " << endl;
@@ -130,6 +138,29 @@ G4bool sensitiveDetector::ProcessHits(G4Step* aStep, G4TouchableHistory*)
 	G4ThreeVector   xyz    = poststep->GetPosition();                                         ///< Global Coordinates of interaction
 	G4ThreeVector  Lxyz    = prestep->GetTouchableHandle()->GetHistory()                      ///< Local Coordinates of interaction
 	->GetTopTransform().TransformPoint(xyz);
+	bool minePanelDeposit = false;
+	if (explicitOptics) {
+		const auto* volumeInfo = mine::FindOpticalVolume(TH->GetVolume(0));
+		if (volumeInfo) {
+			// Core and cladding have their own physical volumes, but their
+			// particle energy belongs to the containing panel's depositing hit.
+			// Resolve the ancestor rather than assuming a fixed hierarchy depth.
+			int panelDepth = -1;
+			for (int depth = 0; depth <= TH->GetHistoryDepth(); ++depth) {
+				const auto* ancestor = mine::FindOpticalVolume(TH->GetVolume(depth));
+				if (ancestor && ancestor->role == mine::OpticalVolumeRole::Panel &&
+				    ancestor->panelId == volumeInfo->panelId) { panelDepth = depth; break; }
+			}
+			if (panelDepth < 0)
+				throw std::runtime_error("MINE optical child has no matching panel in its touchable hierarchy");
+			name = TH->GetVolume(panelDepth)->GetName();
+			if (!hallMap || hallMap->find(name) == hallMap->end())
+				throw std::runtime_error("MINE optical panel is missing from the GEMC detector map");
+			const auto* history = prestep->GetTouchableHandle()->GetHistory();
+			Lxyz = history->GetTransform(TH->GetHistoryDepth()-panelDepth).TransformPoint(xyz);
+			minePanelDeposit = true;
+		}
+	}
 	G4ThreeVector  vert    = trk->GetVertexPosition();
 	double         ctime   = poststep->GetGlobalTime();                                       ///< Time of step
 	G4ThreeVector  pxyz    = prestep->GetMomentum();                                          ///< Track Momentum (before entering the volume)
@@ -140,8 +171,11 @@ G4bool sensitiveDetector::ProcessHits(G4Step* aStep, G4TouchableHistory*)
 	if(trk->GetCreatorProcess()) {
 		processName     = trk->GetCreatorProcess()->GetProcessName();                      ///< Process that originated the track
 	}
-	string materialName    = poststep->GetMaterial()->GetName();                              ///< Material name in this step
-	vector<identifier> VID = SetId(GetDetectorIdentifier(name), TH, ctime, SDID.timeWindow, tid);                              ///< Identifier at the geant4 level, using the G4 hierarchy to set the copies
+	string materialName    = prestep->GetMaterial()->GetName();                              ///< Depositing material, including boundary-ending steps
+	// One panel response per event: a late secondary particle deposit must not
+	// create another MHit and process the same optical arrivals a second time.
+	const double hitTimeWindow = minePanelDeposit ? -1 : SDID.timeWindow;
+	vector<identifier> VID = SetId(GetDetectorIdentifier(name), TH, ctime, hitTimeWindow, tid);                              ///< Identifier at the geant4 level, using the G4 hierarchy to set the copies
 	
 	// Get the ProcessHitRoutine to calculate the new vector<identifier>
 	if(ProcessHitRoutine == nullptr) {
@@ -160,10 +194,13 @@ G4bool sensitiveDetector::ProcessHits(G4Step* aStep, G4TouchableHistory*)
 	double fieldValue[3] = {0, 0, 0};
 	double hitFieldValue = 0;
 	
-	G4FieldManager *fmanager = aStep->GetPostStepPoint()->GetPhysicalVolume()->GetLogicalVolume()->GetFieldManager();
+	// The post-step physical volume is null when a track exits the world.
+	const auto* fieldVolume = poststep->GetPhysicalVolume();
+	if (!fieldVolume) fieldVolume = prestep->GetPhysicalVolume();
+	G4FieldManager *fmanager = fieldVolume ? fieldVolume->GetLogicalVolume()->GetFieldManager() : nullptr;
 	
 	// if no field manager, the field is zero
-	if(fmanager) {
+	if(fmanager && fmanager->GetDetectorField()) {
 		fmanager->GetDetectorField()->GetFieldValue(point, fieldValue);
 		hitFieldValue = sqrt(fieldValue[0]*fieldValue[0] + fieldValue[1]*fieldValue[1] + fieldValue[2]*fieldValue[2]);
 	}
@@ -291,7 +328,7 @@ G4bool sensitiveDetector::ProcessHits(G4Step* aStep, G4TouchableHistory*)
 						<< pid << ", track ID = " << tid << endl
 						<< "            >  Energy Deposited this step: " << depe/MeV << " MeV" << endl
 						<< "            >  Time of this step: " << G4BestUnit(ctime, "Time")
-						<< " is within this element Time Window of " << SDID.timeWindow/ns << " ns. " << endl
+						<< " is within this element Time Window of " << hitTimeWindow/ns << " ns (-1: entire event). " << endl
 						<< "            >  Position of this step:   " << xyz/cm << " cm" << endl
 						<< "            >  Local Position in volume: " << Lxyz/cm  << " cm" << endl;
 					}

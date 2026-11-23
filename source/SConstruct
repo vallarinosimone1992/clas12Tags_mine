@@ -4,6 +4,7 @@ from init_env import init_environment
 # will be removed once the hit process routines are plugins
 env = init_environment("qt5 geant4 clhep xercesc ccdb mlibrary cadmesh hipo c12bfields")
 env.Append(CXXFLAGS=['-std=c++17'])
+env.Append(CPPPATH=['hitprocess']) # MINE optical hooks are used by framework libraries too.
 
 # addressing shortcoming of geant4-config 10.7.4 not returning all libraries
 additional_libs = []
@@ -116,6 +117,15 @@ hitp_sources = Split("""
 	hitprocess/flux_hitprocess.cc
 	hitprocess/mirror_hitprocess.cc
 	hitprocess/counter_hitprocess.cc
+	hitprocess/mine/mine_hitprocess.cc
+	hitprocess/mine/mine_geant4_optics.cc
+	hitprocess/mine/mine_mini_spiral_model.cc
+	hitprocess/mine/mine_mini_geant4.cc
+	hitprocess/mine/mine_geant4_tracking.cc
+	hitprocess/mine/mine_optical_geometry_model.cc
+	hitprocess/mine/mine_parameters.cc
+	hitprocess/mine/mine_response.cc
+	hitprocess/mine/mine_waveform.cc
 	hitprocess/clas12/micromegas/Lorentz.cc
 	hitprocess/clas12/micromegas/FMT_hitprocess.cc
 	hitprocess/clas12/micromegas/fmt_strip.cc
@@ -203,6 +213,7 @@ gemc_sources = Split("""
 	src/gemc_options.cc
 	src/MDetectorConstruction.cc
 	src/MEventAction.cc
+	src/MineRunAction.cc
 	src/MPrimaryGeneratorAction.cc
 	src/ActionInitialization.cc
 	src/MSteppingAction.cc""")

@@ -1,0 +1,86 @@
+{
+  "date": "2026-11-23",
+  "geant4": "10.7.4",
+  "numerical_validation_only": true,
+  "portable_model": {
+    "status": "PASS",
+    "segments_per_fiber": 217,
+    "max_centerline_error_mm": 3.83082e-05,
+    "max_upper_spacing_correction_mm": 0.00359635,
+    "length_per_fiber_mm_approx": 4278.664
+  },
+  "native": {
+    "status": "PASS",
+    "centerline_navigator_points": 434,
+    "surface_inset_mm": 0.0005,
+    "containment_probes": 3472,
+    "prompt_coupling_successes": [
+      20,
+      20,
+      19,
+      20,
+      20
+    ],
+    "coupling_trials_per_case": 20,
+    "cases": [
+      "fiber0 sensor0",
+      "fiber1 sensor0",
+      "fiber0 sensor1",
+      "fiber1 sensor1",
+      "direct plastic sensor0"
+    ]
+  },
+  "integration": {
+    "source": "10 GeV mu-, centered XY, +Z; vertex (0,0,-100)mm",
+    "random_seed": 20261123,
+    "events_per_preset": 1,
+    "fiberLayout": 7,
+    "fiberCount": 2,
+    "fiberModel": 0,
+    "WLS_absorptions_each": 2744,
+    "arrivals_each": [
+      72,
+      66
+    ],
+    "last_entry_fiber_counts_each": {
+      "direct": 1,
+      "fiber0": 67,
+      "fiber1": 70
+    },
+    "ideal": {
+      "detected": [
+        72,
+        66
+      ],
+      "opticalHash": 2717160815808850,
+      "events_seconds": 126.382
+    },
+    "hamamatsu": {
+      "detected": [
+        34,
+        31
+      ],
+      "opticalHash": 4220155524823341,
+      "events_seconds": 125.992
+    },
+    "hipo_status": "PASS",
+    "Geant4_geometry_navigation_exceptions": false
+  },
+  "regressions": [
+    "launcher 14 PASS",
+    "fiber comparison 6 PASS",
+    "corner-fan analytic geometry PASS",
+    "legacy response PASS",
+    "Geant4 response including Hamamatsu/layout7 PASS",
+    "native corner-fan gel groove PASS",
+    "finite-rise generation PASS"
+  ],
+  "limitations": [
+    "No experimental collection/timing calibration",
+    "Plastic ABSLENGTH=1000mm provisional",
+    "Y11 spectral loss uses documented YS4/YS6 proxy",
+    "No calibrated stress degradation for 30mm non-S bends",
+    "Sibling overview analysis not yet compatible with mini layout/gel entryRole",
+    "GUI not exercised interactively"
+  ]
+}

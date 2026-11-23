@@ -1,0 +1,111 @@
+--- a/src/TimingAnalysis.cpp
++++ b/src/TimingAnalysis.cpp
+@@ -276,7 +276,7 @@
+ };
+ struct Hit {
+   int file = 0, run = 0, event = 0, hitn = 0, panel = 0, ideal = 0, layout = 0,
+-      model = 0, fibers = 0;
++      model = 0, fibers = 0, responseMode = 0;
+   std::uint64_t ordinal = 0;
+   double opticalHash = 0, edep = 0, evis = 0, x = nan, y = nan, z = nan,
+          t0 = nan;
+@@ -286,7 +286,7 @@
+ };
+ std::string Signature(const Hit &h) {
+   std::ostringstream o;
+-  o << std::setprecision(17) << h.opticalHash << '/' << h.panel << '/'
++  o << h.responseMode << '/' << std::setprecision(17) << h.opticalHash << '/' << h.panel << '/'
+     << h.ideal << '/' << h.layout << '/' << h.model << '/' << h.fibers;
+   return o.str();
+ }
+@@ -326,6 +326,11 @@
+                  {"fiberLayout", hipo::kInt},
+                  {"fiberModel", hipo::kInt},
+                  {"fiberCount", hipo::kInt}});
++  // Older tabulated HIPO files have no responseMode field. Keep them readable;
++  // an explicit Geant4 response must identify itself as mode 2.
++  const bool hasResponseMode = dict.getSchema("MINE::dgt").exists("responseMode");
++  if (hasResponseMode)
++    RequireFields(dict, "MINE::dgt", {{"responseMode", hipo::kInt}});
+   RequireFields(dict, "MC::True",
+                 {{"detector", hipo::kByte},
+                  {"hitn", hipo::kInt},
+@@ -384,9 +389,13 @@
+         throw std::runtime_error("Invalid MINE hit energy");
+       if (h.panel != c.panel || h.edep <= c.minEdep)
+         continue;
+-      if (response->getInt("opticalTable", row) != 1)
++      const int opticalTable = response->getInt("opticalTable", row);
++      h.responseMode = hasResponseMode ? response->getInt("responseMode", row)
++                                       : (opticalTable == 1 ? 1 : 0);
++      if ((h.responseMode != 1 && h.responseMode != 2) ||
++          opticalTable != (h.responseMode == 1 ? 1 : 0))
+         throw std::runtime_error(
+-            "Analysis requires the tabulated dual-SiPM response");
++            "Analysis requires a consistent tabulated (mode 1) or Geant4 (mode 2) dual-SiPM response");
+       h.opticalHash = response->getDouble("opticalHash", row);
+       h.ideal = response->getInt("idealSiPM", row);
+       h.layout = response->getInt("fiberLayout", row);
+@@ -627,6 +636,7 @@
+   tree.Branch("hitn", &h.hitn);
+   tree.Branch("panel", &h.panel);
+   tree.Branch("opticalHash", &h.opticalHash);
++  tree.Branch("responseMode", &h.responseMode);
+   tree.Branch("idealSiPM", &h.ideal);
+   tree.Branch("x_mm", &h.x);
+   tree.Branch("y_mm", &h.y);
+@@ -732,6 +742,7 @@
+     const auto &g = groups[i];
+     json << "{\"name\":" << Json(g.name)
+          << ",\"signature\":" << Json(g.signature)
++         << ",\"response_mode\":" << (g.hits.empty() ? 0 : g.hits.front().responseMode)
+          << ",\"calibration_mode\":" << Json(c.mode)
+          << ",\"calibration_applied\":" << (g.calibrated ? "true" : "false")
+          << ",\"position_calibration_truth_assisted\":"
+@@ -823,8 +834,8 @@
+           merged.signature = g.signature;
+         else if (merged.signature != g.signature)
+           throw std::runtime_error(
+-              "Input.MergeFiles=1 cannot combine different optical tables, "
+-              "panels or ideal/real SiPM settings");
++              "Input.MergeFiles=1 cannot combine different transport modes, "
++              "optical fingerprints, panels or ideal/real SiPM settings");
+       }
+       merged.files.insert(merged.files.end(), g.files.begin(), g.files.end());
+       merged.hits.insert(merged.hits.end(),
+@@ -936,6 +947,7 @@
+         throw std::runtime_error("Cannot create ROOT group directory");
+       directory->cd();
+       TNamed("signature", g.signature.c_str()).Write();
++      TParameter<int>("responseMode", g.hits.empty() ? 0 : g.hits.front().responseMode).Write();
+       TParameter<int>("calibration_applied", g.calibrated).Write();
+       const std::array<std::string, 3> stages = {"raw_all", "raw_evaluation",
+                                                  "corrected_evaluation"};
+--- a/README.md
++++ b/README.md
+@@ -171,6 +171,14 @@
+ La base polinomiale è un modello di calibrazione iniziale: controllare i profili
+ residui in funzione di posizione e carica prima di interpretare il risultato.
+ 
++Il campo opzionale `MINE::dgt.responseMode` distingue risposta tabulata (`1`) e
++trasporto ottico Geant4 (`2`). I vecchi HIPO tabulati privi del campo sono ancora
++accettati tramite `opticalTable=1`; la modalità Geant4 richiede esplicitamente
++`responseMode=2`, `opticalTable=0` e un `opticalHash` positivo della configurazione.
++`t0` e `MC::True` mantengono il riferimento ai depositi della particella, escludendo
++gli assorbimenti ottici. La firma include la modalità e impedisce di unire le due
++risposte. Il campo è conservato nell'albero ROOT e nei metadati del report.
++
+ Per default ogni HIPO è analizzato separatamente. `Input.MergeFiles: 1` permette
+ di unire file e accumulare statistica, richiedendo coerenza di fingerprint della
+ tabella, pannello e flag SiPM ideale/reale. Impostare tale opzione implica anche
+--- a/tests/make_synthetic_hipo.cc
++++ b/tests/make_synthetic_hipo.cc
+@@ -152,6 +152,8 @@
+       response.putDouble("Nphotons", 0, 14400);
+       response.putDouble("t0", 0, t0);
+       response.putInt("opticalTable", 0, 1);
++      if (response.getSchema().exists("responseMode"))
++        response.putInt("responseMode", 0, 1);
+       response.putDouble("opticalHash", 0, 1234567890123.);
+       response.putInt("fiberCount", 0, 15);
+       response.putInt("fiberModel", 0, 0);

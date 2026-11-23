@@ -1,0 +1,102 @@
+Loading geant4/10.7.4
+  Loading requirement: .clhep/2.4.7.1 .xercesc/3.2.5 .qt/system sim_system
+Loading gemc/dev
+  Loading requirement: .scons_bm/dev .cmag/1.1 .mlibrary/dev
+MINE GEMC environment loaded
+  GEMC=/work/clas12Tags_mine
+  GEMC_DATA_DIR=/work/clas12Tags_mine
+  CCDB_HOME=/cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/ccdb/1.99.6
+  HIPO=/cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/hipo/4.5.0
+MINE response tests passed; Poisson mean=49.9563, variance=50.3824
+Explicit optical response passed: exact ideal arrivals/times, panel association, single PDE; binomial mean=49.8884, variance=37.6879 (expected 50, 37.5)
+tests/geant4_groove_geometry_test.cc: In function ‘int main(int, char**)’:
+tests/geant4_groove_geometry_test.cc:28:21: warning: declaration of ‘g’ shadows a global declaration [-Wshadow]
+   28 |         const auto& g=mine::BuildGeant4Optics(panel,world,1,c);
+      |                     ^
+In file included from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/clhep/2.4.7.1/include/CLHEP/Units/PhysicalConstants.h:45,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/clhep/2.4.7.1/include/CLHEP/Vector/RotationX.icc:11,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/clhep/2.4.7.1/include/CLHEP/Vector/RotationX.h:281,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/clhep/2.4.7.1/include/CLHEP/Vector/Rotation.h:26,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/clhep/2.4.7.1/include/CLHEP/Geometry/Transform3D.icc:6,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/clhep/2.4.7.1/include/CLHEP/Geometry/Transform3D.h:837,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/geant4/10.7.4/include/Geant4/G4Transform3D.hh:32,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/geant4/10.7.4/include/Geant4/HepPolyhedron.h:183,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/geant4/10.7.4/include/Geant4/G4Polyhedron.hh:120,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/geant4/10.7.4/include/Geant4/G4Box.hh:53,
+                 from tests/geant4_groove_geometry_test.cc:4:
+/cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/clhep/2.4.7.1/include/CLHEP/Units/SystemOfUnits.h:200:29: note: shadowed declaration is here
+  200 |   static constexpr double   g = gram;
+      |                             ^
+tests/geant4_groove_geometry_test.cc:46:30: warning: declaration of ‘s’ shadows a global declaration [-Wshadow]
+   46 |                 const double s=route.LengthMm()*fraction;
+      |                              ^
+In file included from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/clhep/2.4.7.1/include/CLHEP/Units/PhysicalConstants.h:45,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/clhep/2.4.7.1/include/CLHEP/Vector/RotationX.icc:11,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/clhep/2.4.7.1/include/CLHEP/Vector/RotationX.h:281,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/clhep/2.4.7.1/include/CLHEP/Vector/Rotation.h:26,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/clhep/2.4.7.1/include/CLHEP/Geometry/Transform3D.icc:6,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/clhep/2.4.7.1/include/CLHEP/Geometry/Transform3D.h:837,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/geant4/10.7.4/include/Geant4/G4Transform3D.hh:32,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/geant4/10.7.4/include/Geant4/HepPolyhedron.h:183,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/geant4/10.7.4/include/Geant4/G4Polyhedron.hh:120,
+                 from /cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/geant4/10.7.4/include/Geant4/G4Box.hh:53,
+                 from tests/geant4_groove_geometry_test.cc:4:
+/cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/clhep/2.4.7.1/include/CLHEP/Units/SystemOfUnits.h:158:28: note: shadowed declaration is here
+  158 |   static constexpr double  s = second;
+      |                            ^
+mine_mini_geant4.cc: In function ‘G4VSolid* mine::{anonymous}::join(const string&, std::vector<G4VSolid*>)’:
+mine_mini_geant4.cc:36:2: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   36 |  if(s.empty())throw std::runtime_error("Empty mini solid union");int level=0;
+      |  ^~
+mine_mini_geant4.cc:36:66: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   36 |  if(s.empty())throw std::runtime_error("Empty mini solid union");int level=0;
+      |                                                                  ^~~
+mine_mini_spiral_model.cc: In member function ‘mine::OpticalPoint mine::MiniSpiralSegment::PointAtFraction(double) const’:
+mine_mini_spiral_model.cc:181:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  181 |     if(f==0)return start;if(f==1)return end;
+      |     ^~
+mine_mini_spiral_model.cc:181:26: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  181 |     if(f==0)return start;if(f==1)return end;
+      |                          ^~
+mine_mini_spiral_model.cc: At global scope:
+mine_mini_spiral_model.cc:10:14: warning: ‘mine::OpticalPoint mine::{anonymous}::cross(const mine::OpticalPoint&, const mine::OpticalPoint&)’ defined but not used [-Wunused-function]
+   10 | OpticalPoint cross(const OpticalPoint& a,const OpticalPoint& b) {
+      |              ^~~~~
+Checking overlaps for volume MINE_optical_1_grooves (G4IntersectionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_0_cladding (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_1_cladding (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_2_cladding (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_3_cladding (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_4_cladding (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_5_cladding (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_6_cladding (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_7_cladding (G4DisplacedSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_8_cladding (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_9_cladding (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_10_cladding (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_11_cladding (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_12_cladding (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_13_cladding (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_14_cladding (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_0_core (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_1_core (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_2_core (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_3_core (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_4_core (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_5_core (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_6_core (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_7_core (G4DisplacedSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_8_core (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_9_core (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_10_core (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_11_core (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_12_core (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_13_core (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_fiber_14_core (G4UnionSolid) ... OK! 
+Checking overlaps for volume MINE_optical_1_sensor_0 (G4Box) ... OK! 
+Checking overlaps for volume MINE_optical_1_sensor_1 (G4Box) ... OK! 
+MINE Geant4 optics $Name: geant4-10-07-patch-04 $; panel=1; fibers=15; fiber_model=Y-11; PS/PMMA single cladding radial fraction=0.02; pitch_mm=94.1121; inset_mm=10.269; sensor_width_mm=20.5012; z_MC_to_local_mm=-5; groove_model=square; groove_material=gel; groove_width_mm=2; groove_depth_mm=2; groove_n425=1.49204; coating_model=specular; coating_material=aluminized_mylar; coating_R425=0.746711; coating_reference_albedo=1; bulk_exp_ray_length_mm=1000; model=spectral_y11; scintillation_spectrum=monochromatic; scintillation_convention=photon_per_nm; WLS_L430_mm=0.340136; dye_ppm=200; emission_convention=photon_per_nm; fiber_loss_model=kuraray_spectral; effective_fiber_path_proxy_mm=0; config_hash=837774402028215
+MINE NOTE: open grooves are flush-filled with gel; no absorption/scattering/emission in filling. Gel dispersion follows Thorlabs G608N3; below 402 nm is unvalidated Cauchy extrapolation. Glue n=1.57 and air n=1.000277 are constant approximations; gel/epoxy charged-particle compositions are proxies. See reference/grooves.md.
+MINE NOTE: Yang2021 coating curve is relative to BaSO4, multiplied by coatingReferenceAlbedo=1 (unity approximates an ideal reference, not an absolute MINE contact calibration).
+GROOVE_GROUP_INDEX native=1.60853 expected=1.60853
+GROOVE_GEOMETRY_PASS material=gel square_mm=2 center_samples=90 n425=1.49204

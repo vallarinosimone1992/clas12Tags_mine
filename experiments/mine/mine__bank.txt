@@ -1,0 +1,59 @@
+                mine  |              bankid  |                             MINE response bank ID  | 4600   |                  Di  
+                mine  |                  id  |                                  Panel identifier  |    1   |                  Di  
+                mine  |                Edep  |                            Deposited energy (MeV)  |    2   |                  Dd  
+                mine  |                Evis  |                        Birks visible energy (MeV)  |    3   |                  Dd  
+                mine  |            Nphotons  |                    Expected scintillation photons  |    4   |                  Dd  
+                mine  |          Ncollected  |                        Expected collected photons  |    5   |                  Dd  
+                mine  |        Ntransported  |                          Expected photons at SiPM  |    6   |                  Dd  
+                mine  |             meanNpe  |              Mean primary detected photoelectrons  |    7   |                  Dd  
+                mine  |                 Npe  |                    Sampled primary photoelectrons  |    8   |                  Di  
+                mine  |              Nfired  |  Prompt fired pixels including dark and crosstalk  |    9   |                  Di  
+                mine  |               Ndark  |                            Prompt dark avalanches  |   10   |                  Di  
+                mine  |          NcrossTalk  |                       Prompt crosstalk avalanches  |   11   |                  Di  
+                mine  |         Nafterpulse  |                               Delayed afterpulses  |   12   |                  Di  
+                mine  |                 ADC  |      Integrated waveform in provisional ADC units  |   13   |                  Dd  
+                mine  |                 TDC  |     Leading threshold crossing (ns); -1 if absent  |   14   |                  Dd  
+                mine  |         timingValid  |       Whether a leading threshold crossing exists  |   15   |                  Di  
+                mine  |                  t0  |                Earliest depositing step time (ns)  |   16   |                  Dd  
+                mine  |     readoutDistance  |Produced-photon-weighted bulk capture distance (mm)  |   17   |                  Dd  
+                mine  |       fiberDistance  |Collected-photon-weighted route to selected end (mm)  |   18   |                  Dd  
+                mine  |         readoutMode  |                0 reference; 1 WLS; 2 direct fiber  |   19   |                  Di  
+                mine  |     unquenchedSteps  |              Charged depositing zero-length steps  |   20   |                  Di  
+                mine  |          readoutEnd  |               Selected physical SiPM end (0 or 1)  |   21   |                  Di  
+                mine  |          fiberModel  |                          0 Y-11; 1 YS-6; 2 YS-4; -1 clear  |   22   |                  Di  
+                mine  |         fiberLayout  |0 anchor;1 fan;2 legacy double;3 corner;4 triple;5 panel double;6 straight;7 other table  |   23   |                  Di  
+                mine  |           idealSiPM  |        Whether the ideal SiPM override is enabled  |   24   |                  Di  
+                mine  |        effectivePDE  |             Photon-weighted PDE before saturation  |   25   |                  Dd  
+                mine  |         Ncollected0  |     Expected optically collected photons sensor 0  |   26   |                  Dd  
+                mine  |       Ntransported0  |          Expected photons after coupling sensor 0  |   27   |                  Dd  
+                mine  |            meanNpe0  |                          Mean primary PE sensor 0  |   28   |                  Dd  
+                mine  |                Npe0  |                       Sampled primary PE sensor 0  |   29   |                  Di  
+                mine  |             Nfired0  |                      Prompt fired pixels sensor 0  |   30   |                  Di  
+                mine  |              Ndark0  |                          Dark avalanches sensor 0  |   31   |                  Di  
+                mine  |         NcrossTalk0  |                     Crosstalk avalanches sensor 0  |   32   |                  Di  
+                mine  |        Nafterpulse0  |                              Afterpulses sensor 0  |   33   |                  Di  
+                mine  |                ADC0  |               Integrated waveform charge sensor 0  |   34   |                  Dd  
+                mine  |                TDC0  |Leading threshold crossing ns; -1 if invalid sensor 0  |   35   |                  Dd  
+                mine  |        timingValid0  |                 Valid threshold crossing sensor 0  |   36   |                  Di  
+                mine  |       effectivePDE0  |                      Photon weighted PDE sensor 0  |   37   |                  Dd  
+                mine  |         Ncollected1  |     Expected optically collected photons sensor 1  |   38   |                  Dd  
+                mine  |       Ntransported1  |          Expected photons after coupling sensor 1  |   39   |                  Dd  
+                mine  |            meanNpe1  |                          Mean primary PE sensor 1  |   40   |                  Dd  
+                mine  |                Npe1  |                       Sampled primary PE sensor 1  |   41   |                  Di  
+                mine  |             Nfired1  |                      Prompt fired pixels sensor 1  |   42   |                  Di  
+                mine  |              Ndark1  |                          Dark avalanches sensor 1  |   43   |                  Di  
+                mine  |         NcrossTalk1  |                     Crosstalk avalanches sensor 1  |   44   |                  Di  
+                mine  |        Nafterpulse1  |                              Afterpulses sensor 1  |   45   |                  Di  
+                mine  |                ADC1  |               Integrated waveform charge sensor 1  |   46   |                  Dd  
+                mine  |                TDC1  |Leading threshold crossing ns; -1 if invalid sensor 1  |   47   |                  Dd  
+                mine  |        timingValid1  |                 Valid threshold crossing sensor 1  |   48   |                  Di  
+                mine  |       effectivePDE1  |                      Photon weighted PDE sensor 1  |   49   |                  Dd  
+                mine  |        opticalTable  |    1 tabulated optics; 0 otherwise; see responseMode  |   50   |                  Di  
+                mine  |         opticalHash  |Low 52 bits FNV1a of table or explicit optical config  |   51   |                  Dd  
+                mine  |          fiberCount  |Number of fibers from table or explicit optical geometry; 0 legacy  |   52   |                  Di  
+                mine  |     bothTimingValid  |                    Both sensors have valid timing  |   53   |                  Di  
+                mine  |             TDCmean  |  Arithmetic mean of sensor TDCs ns; -1 if invalid  |   54   |                  Dd  
+                mine  |       TDCdifference  |                 TDC1 minus TDC0 ns; -1 if invalid  |   55   |                  Dd  
+                mine  |        responseMode  |0 legacy; 1 tabulated; 2 explicit Geant4 optical transport  |   56   |                  Di  
+                mine  |      Nscintillation  |Actual Geant4 scintillation photon count; -1 in effective modes  |   57   |                  Dd  
+                mine  |                hitn  |                                        Hit number  |   99   |                  Di  

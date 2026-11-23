@@ -139,7 +139,10 @@ vector<string> init_dvmesg(goptions gemcOpt, G4VisManager *VM)
 		commands.push_back("/vis/scene/endOfEventAction accumulate -1");
 	}
 	
-	commands.push_back("/vis/viewer/set/autoRefresh true");
+	const char* mineMode=std::getenv("MINE_RESPONSE_MODE");
+    if(mineMode && std::string(mineMode)=="geant4")
+        commands.push_back("/vis/scene/add/userAction MINE_fibers");
+    commands.push_back("/vis/viewer/set/autoRefresh true");
 
 
 	

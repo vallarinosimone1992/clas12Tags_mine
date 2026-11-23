@@ -6,7 +6,11 @@
 
 // gemc headers
 #include "MEventAction.h"
+#include "MineRunAction.h"
 #include "Hit.h"
+#include "mine/mine_optical_event.h"
+#include "mine/mine_optical_geometry_model.h"
+#include "mine/mine_geant4_tracking.h"
 
 // mlibrary
 #include "frequencySyncSignal.h"
@@ -186,6 +190,10 @@ MEventAction::~MEventAction() {
 }
 
 void MEventAction::BeginOfEventAction(const G4Event* evt) {
+	mine::OpticalEvent().clear();
+	mine::ResetGeant4OpticalTracking();
+	if(mine::geant4OpticalMode())
+		mine::OpticalEvent().configFingerprint=mine::ActiveGeant4OpticsConfig().fingerprint;
 	G4RunManager* runManager = G4RunManager::GetRunManager();;
 	if (gen_action->isFileOpen() == false) {
 		runManager->AbortRun();
@@ -203,7 +211,7 @@ void MEventAction::BeginOfEventAction(const G4Event* evt) {
 	bgMap.clear();
 
 	static int lastEvtN = -1;
-	if (evtN > lastEvtN && evtN % Modulo == 0) {
+	if ((!mineRunAction || VERB > 0) && evtN > lastEvtN && Modulo > 0 && evtN % Modulo == 0) {
 		cout << hd_msg << " Begin of event " << evtN << "  Run Number: " << rw.runNo;
 		if (rw.isNewRun) {
 			cout << " (new) ";
@@ -245,6 +253,8 @@ void MEventAction::EndOfEventAction(const G4Event* evt) {
 	if ((gen_action->isFileOpen() == false) ||
 		(gen_action->doneRerun() == true))
 		return;
+
+    MineRunAction::EventCompletion progress(mineRunAction, evt);
 
 	// completely skip the event
 	// (still need to increase event number)
@@ -1029,6 +1039,7 @@ void MEventAction::EndOfEventAction(const G4Event* evt) {
 
 
 	processOutputFactory->writeEvent(outContainer);
+    progress.markWritten();
 	delete processOutputFactory;
 
 	// Save RNG; can't use G4RunManager::GetRunManager()->rndmSaveThisEvent()

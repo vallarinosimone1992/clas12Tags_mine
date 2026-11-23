@@ -1,0 +1,10 @@
+Loading geant4/10.7.4
+  Loading requirement: .clhep/2.4.7.1 .xercesc/3.2.5 .qt/system sim_system
+Loading gemc/dev
+  Loading requirement: .scons_bm/dev .cmag/1.1 .mlibrary/dev
+MINE GEMC environment loaded
+  GEMC=/work/clas12Tags_mine
+  GEMC_DATA_DIR=/work/clas12Tags_mine
+  CCDB_HOME=/cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/ccdb/1.99.6
+  HIPO=/cvmfs/oasis.opensciencegrid.org/jlab/geant4/almalinux9-gcc11/hipo/4.5.0
+Optical HIPO verification passed: events=1, depositHits=1, arrivals=53,82, WLS_absorptions=2017, detected=53,82, unjoined=0, timeRangeNs=2.97198,36.8841, maxPathMm=6557.64

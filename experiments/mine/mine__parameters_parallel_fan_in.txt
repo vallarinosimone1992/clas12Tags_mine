@@ -1,0 +1,32 @@
+mine_use_optical_table | 1 | counts | Use common optical_response.dat for geometry, transport and both sensors; 0 legacy model
+mine_birks | 0.126 | counts | Birks mm/MeV
+mine_light_yield | 8000 | counts | Extruded scintillator photons per MeV visible energy
+mine_decay_time | 2.5 | ns | Scintillation exponential decay
+mine_bulk_attenuation | 1000 | mm | Effective 100 cm bulk attenuation
+mine_bulk_velocity | 170 | counts | Effective bulk speed in mm/ns
+mine_collection_efficiency | 0.01 | counts | UNCALIBRATED pre-trapping capture and re-emission probability; NOT the 6.2 percent guided fraction
+mine_readout_mode | 1 | counts | 0 reference; 1 WLS; 2 direct fiber
+mine_fiber_model | 0 | counts | 0 Y-11(200) single clad; 1 future YS-6 hypothesis; profile supplies attenuation decay and emission peak
+mine_fiber_layout | 1 | counts | Compact fan matching quick_parallel.conf
+mine_readout_end | 0 | counts | Physical sensor end 0 or 1; one response per run
+mine_wls_trapping_efficiency | 0.031 | counts | Per end fraction conditional on re-emission; 0.062 for both ends before attenuation
+mine_coupling_efficiency | 1 | counts | Neutral coupling factor to be measured
+mine_fiber_length | 0 | mm | Extra tail after geometrical route; sole path with layout 0
+ideal_SiPM | 0 | counts | 1 gives PDE unity no saturation no dark no cross-talk no afterpulse; preserves photon statistics
+mine_spectral_pde | 1 | counts | Use digitized Hamamatsu S13360-3075CS wavelength-dependent PDE at 25 C and plus 3 V
+mine_photon_wavelength_nm | 425 | counts | Unshifted scintillation peak proxy in nm; WLS uses fiber profile peak
+mine_gain | 1 | counts | Normalized charge per avalanche
+mine_pixels | 1600 | counts | S13360-3075CS 3x3 mm 75 um cells
+mine_crosstalk | 0.07 | counts | Datasheet typical at plus 3 V
+mine_dark_rate | 0.0005 | counts | 500 kcps per device expressed in inverse ns
+mine_afterpulse | 0 | counts | Not specified quantitatively in datasheet; disabled
+mine_parallel_fibers | 10 | counts | Fibers at 100 mm pitch
+mine_fiber_pitch | 100 | mm | Adjacent-fiber spacing
+mine_straight_ymin | -250 | mm | Minimum common straight section start
+mine_straight_ymax | 250 | mm | Minimum common straight section end
+mine_sensor0_y | -500 | mm | Readout at lower panel edge
+mine_sensor1_y | 500 | mm | Readout at upper panel edge
+mine_fiber_z | 0.5 | mm | Fiber centerline Z
+mine_min_bend_radius | 100 | mm | Single clad Non-S 1 mm reference
+mine_curve_step | 2 | mm | Curve discretization step
+mine_sensor_pitch | 1.2 | mm | End packing pitch where used; corner paths share exact endpoints

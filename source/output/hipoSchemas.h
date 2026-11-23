@@ -20,6 +20,10 @@ public:
 	hipo::schema fluxADCSchema;
 
 	// detectors
+    hipo::schema mineDgtSchema;
+    hipo::schema mineOpticalSchema;
+    hipo::schema mineConfigSchema;
+    hipo::schema mcWlsSchema;
 	hipo::schema alertAhdcADCSchema;
 	hipo::schema alertAhdcTDCSchema;
 	hipo::schema alertAhdcWFSchema;

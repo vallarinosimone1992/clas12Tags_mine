@@ -27,6 +27,9 @@ private:
 	static int rasterInitialized;
 	static double rasterP0[2];
 	static double rasterP1[2];
+    // This output object lives for one event. Filled during digitization,
+    // before prepareEvent(), and consumed when publishing optical arrivals.
+    map<int, int> minePanelHitNumbers;
 
 public:
 	~hipo_output(){
@@ -125,6 +128,7 @@ public:
 		{"muvt",    29},
 		{"murt",    30},
 		{"murh",    31},
+		{"mine",   110}, // Local standalone MINE ID; fits MC::True.detector byte.
 		{"flux",   100}
 	};
 

@@ -1,0 +1,51 @@
+{
+  "version": "groove_indices_v1",
+  "access_date": "2026-11-12",
+  "profiles": {
+    "air": {
+      "source_id": "S26",
+      "source": "NIST, Better Accuracy Out of Thin (or Thick) Air",
+      "url": "https://www.nist.gov/news-events/news/2016/02/better-accuracy-out-thin-or-thick-air",
+      "index_model": "1.000277 constant",
+      "limits": "Typical ambient reference, not full Ciddor dispersion or pressure/temperature/humidity dependence."
+    },
+    "gel": {
+      "source_id": "S24",
+      "source": "Thorlabs G608N3 Index Matching Gel, manufacturer specifications",
+      "url": "https://www.thorlabs.de/newgrouppage9.cfm?objectgroup_id=314&pn=ADAFCSC1",
+      "index_model": "1.4338 + 10520 / lambda_nm^2",
+      "published_indices": [
+        [
+          402,
+          1.4995
+        ],
+        [
+          589.3,
+          1.4646
+        ],
+        [
+          980,
+          1.4462
+        ],
+        [
+          1550,
+          1.4378
+        ]
+      ],
+      "density_g_cm3": 1.06,
+      "limits": "Manufacturer Cauchy fit; continuation below first published point 402 nm is unvalidated. Not a measurement of an unspecified MINE gel."
+    },
+    "glue": {
+      "source_id": "S25",
+      "source": "Eljen EJ-500 Optical Cement, Jul 2021",
+      "url": "https://eljentechnology.com/images/products/data_sheets/EJ-500.pdf",
+      "index_model": "1.57 constant",
+      "density_g_cm3": 1.17,
+      "limits": "No refractive-index dispersion supplied; constant over optical range is an explicit approximation."
+    }
+  },
+  "absorption": "Disabled at user request (infinite absorption length); no WLS, scintillation or bulk scattering in filling.",
+  "particle_transport": "Gel PDMS composition proxy C2H6OSi, density 1.06 g/cm3; glue generic DGEBA epoxy proxy C21H24O4, density 1.17 g/cm3. Commercial compositions are not claimed. Air N/O/Ar mass fractions at 20 C and 1 atm.",
+  "runtime": "Gel Cauchy sampled at 4001 energy points spanning 1-6 eV, native Geant4 GROUPVEL derived from RINDEX; constant air/glue indices. Smooth uncoated dielectric interfaces.",
+  "geometry": "Square 2x2 mm open on z_MC=0, fiber centered at z_MC=1 mm; merged filling network, clipped to panel boundary, same external wrapping across flush openings."
+}

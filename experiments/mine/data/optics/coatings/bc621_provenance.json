@@ -1,0 +1,22 @@
+{
+  "source_url": "https://luxiumsolutions.com/sites/default/files/2021-10/BC621-Data-Sheet.pdf",
+  "source_title": "BC-621 Reflector Paint for Plastic Scintillators, Saint-Gobain, July 2021",
+  "source_pdf_sha256": "c86e87f33c9515532aeaa0d82482a99dd26e9c57dab43069010601c583c0dd71",
+  "method": "Approximate blue-curve pixel medians from the embedded 1567x1025 graph, extracted using Poppler SVG",
+  "axis_calibration_pixels": {
+    "x350": 177,
+    "x550": 1493,
+    "y100percent": 122,
+    "y30percent": 797
+  },
+  "curve_selection": "For the reference wavelength column +/-1 pixel, use median y of curve pixels with B>G+25, G>R+10, 80<B<220",
+  "selected_reference_wavelength_nm": 425,
+  "digitized_reflectivity": 0.9211851851851852,
+  "runtime_constant_diffuse_reflectivity": 0.92,
+  "limits": [
+    "Rounded graph value; no manufacturer measurement uncertainty supplied",
+    "Constant R does not reproduce the sharp UV cutoff",
+    "Angular law idealized as Lambertian; not a measured BC-621 BRDF",
+    "Air-side manufacturer reflectance is an effective proxy, not a calibration of MINE plastic/coating contact"
+  ]
+}

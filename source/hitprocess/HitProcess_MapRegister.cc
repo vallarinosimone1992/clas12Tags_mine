@@ -4,6 +4,7 @@
 #include "flux_hitprocess.h"         ///< flux hit process common to all
 #include "mirror_hitprocess.h"       ///< mirror hit process common to all
 #include "counter_hitprocess.h"      ///< counter hit process common to all
+#include "mine/mine_hitprocess.h"      ///< Standalone MINE scintillator
 
 // CLAS12
 #include "clas12/alert/atof_hitprocess.h"       ///< Alert TOF
@@ -99,6 +100,8 @@ map<string, HitProcess_Factory> HitProcess_Map(string experiments)
            	hitMap["muvt"]      = &muvt_HitProcess::createHitClass;
            	hitMap["murt"]      = &murt_HitProcess::createHitClass;
 			hitMap["recoil"]    = &recoil_HitProcess::createHitClass;
+		} else if(EXP == "mine") {
+			hitMap["mine"] = &mine_HitProcess::createHitClass;
 		} else if(EXP == "HPS") {
 			// Aprime
 			hitMap["SVT"]        = &SVT_HitProcess::createHitClass;
